@@ -19,8 +19,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = OnboardingViewController()
-        window?.makeKeyAndVisible()
+        
+        if(UserDefaults.standard.bool(forKey: "notFirstInApp") == false){
+            UserDefaults.standard.set(true, forKey: "notFirstInApp")
+            window?.rootViewController = OnboardingViewController()
+            window?.makeKeyAndVisible()
+        }else{
+            window?.rootViewController = LoginViewController()
+            window?.makeKeyAndVisible()
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

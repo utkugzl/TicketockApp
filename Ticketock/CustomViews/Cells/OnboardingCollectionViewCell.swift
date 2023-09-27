@@ -10,12 +10,10 @@ import UIKit
 class OnboardingCollectionViewCell: UICollectionViewCell {
     
     static let identifier = String(describing: OnboardingCollectionViewCell.self)
-    
 
     @IBOutlet weak var onboardingImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    
     
     
     func setup(_ model: OnboardingModel) {
@@ -23,7 +21,5 @@ class OnboardingCollectionViewCell: UICollectionViewCell {
         titleLabel.text = model.title
         descriptionLabel.text = model.description
     }
-    
-
 
 }
