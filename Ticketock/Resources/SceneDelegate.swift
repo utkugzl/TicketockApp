@@ -20,12 +20,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         
-        if(UserDefaults.standard.bool(forKey: "notFirstInApp") == false){
-            UserDefaults.standard.set(true, forKey: "notFirstInApp")
+        if(UserDefaults.standard.bool(forKey: AppConstants.UserDefaultsKeys.notFirstInApp) == false){
+            UserDefaults.standard.set(true, forKey: AppConstants.UserDefaultsKeys.notFirstInApp)
             window?.rootViewController = OnboardingViewController()
             window?.makeKeyAndVisible()
         }else{
-            window?.rootViewController = LoginViewController()
+            let vc = LoginViewController()
+            let nav = UINavigationController(rootViewController: vc)
+            nav.modalPresentationStyle = .fullScreen
+            window?.rootViewController = nav
             window?.makeKeyAndVisible()
         }
     }

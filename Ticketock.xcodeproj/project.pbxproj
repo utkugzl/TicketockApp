@@ -21,6 +21,11 @@
 		719B5D012AC467A900E99BE0 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D002AC467A800E99BE0 /* CustomTextField.swift */; };
 		719B5D042AC46D3B00E99BE0 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D032AC46D3B00E99BE0 /* CustomButton.swift */; };
 		719B5D292AC4C58400E99BE0 /* CustomKeyboardToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D282AC4C58400E99BE0 /* CustomKeyboardToolbar.swift */; };
+		719B5D2B2AC5C66000E99BE0 /* WebViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D2A2AC5C66000E99BE0 /* WebViewerController.swift */; };
+		719B5D2F2AC5D60600E99BE0 /* CustomTermsAndPrivacyTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D2E2AC5D60600E99BE0 /* CustomTermsAndPrivacyTextView.swift */; };
+		719B5D312AC5DAF300E99BE0 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D302AC5DAF300E99BE0 /* ForgotPasswordViewController.swift */; };
+		719B5D382AC607D700E99BE0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D372AC607D700E99BE0 /* Constants.swift */; };
+		719B5D3A2AC614A600E99BE0 /* AuthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D392AC614A600E99BE0 /* AuthHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +45,11 @@
 		719B5D002AC467A800E99BE0 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		719B5D032AC46D3B00E99BE0 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		719B5D282AC4C58400E99BE0 /* CustomKeyboardToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomKeyboardToolbar.swift; sourceTree = "<group>"; };
+		719B5D2A2AC5C66000E99BE0 /* WebViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewerController.swift; sourceTree = "<group>"; };
+		719B5D2E2AC5D60600E99BE0 /* CustomTermsAndPrivacyTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTermsAndPrivacyTextView.swift; sourceTree = "<group>"; };
+		719B5D302AC5DAF300E99BE0 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		719B5D372AC607D700E99BE0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		719B5D392AC614A600E99BE0 /* AuthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,8 +85,7 @@
 				719B5CF32AC32ABB00E99BE0 /* Resources */,
 				719B5CEE2AC32A8600E99BE0 /* Extensions */,
 				719B5CF22AC32AB300E99BE0 /* Modals */,
-				719B5CF12AC32AAB00E99BE0 /* Views */,
-				719B5CF02AC32AA000E99BE0 /* ViewModels */,
+				719B5CF12AC32AAB00E99BE0 /* Scenes */,
 				719B5CEF2AC32A9100E99BE0 /* CustomViews */,
 				719B5CE32AC3299000E99BE0 /* Assets.xcassets */,
 				719B5CE52AC3299000E99BE0 /* LaunchScreen.storyboard */,
@@ -96,29 +105,25 @@
 		719B5CEF2AC32A9100E99BE0 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				719B5D022AC46B4400E99BE0 /* Cells */,
+				719B5D392AC614A600E99BE0 /* AuthHeaderView.swift */,
 				719B5D002AC467A800E99BE0 /* CustomTextField.swift */,
 				719B5D032AC46D3B00E99BE0 /* CustomButton.swift */,
 				719B5D282AC4C58400E99BE0 /* CustomKeyboardToolbar.swift */,
+				719B5D2E2AC5D60600E99BE0 /* CustomTermsAndPrivacyTextView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
-		719B5CF02AC32AA000E99BE0 /* ViewModels */ = {
+		719B5CF12AC32AAB00E99BE0 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				719B5D322AC6030900E99BE0 /* Onboarding */,
+				719B5D332AC6035200E99BE0 /* Login */,
+				719B5D342AC6035D00E99BE0 /* Register */,
+				719B5D352AC6036B00E99BE0 /* ForgotPassword */,
+				719B5D2A2AC5C66000E99BE0 /* WebViewerController.swift */,
 			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		719B5CF12AC32AAB00E99BE0 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				719B5CDE2AC3298F00E99BE0 /* OnboardingViewController.swift */,
-				719B5CFC2AC4366300E99BE0 /* LoginViewController.swift */,
-				719B5CFE2AC4422100E99BE0 /* RegisterViewController.swift */,
-			);
-			path = Views;
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 		719B5CF22AC32AB300E99BE0 /* Modals */ = {
@@ -134,17 +139,51 @@
 			children = (
 				719B5CDA2AC3298F00E99BE0 /* AppDelegate.swift */,
 				719B5CDC2AC3298F00E99BE0 /* SceneDelegate.swift */,
+				719B5D372AC607D700E99BE0 /* Constants.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		719B5D022AC46B4400E99BE0 /* Cells */ = {
+		719B5D322AC6030900E99BE0 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				719B5CDE2AC3298F00E99BE0 /* OnboardingViewController.swift */,
+				719B5D362AC603B500E99BE0 /* CustomCells */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		719B5D332AC6035200E99BE0 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				719B5CFC2AC4366300E99BE0 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		719B5D342AC6035D00E99BE0 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				719B5CFE2AC4422100E99BE0 /* RegisterViewController.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		719B5D352AC6036B00E99BE0 /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				719B5D302AC5DAF300E99BE0 /* ForgotPasswordViewController.swift */,
+			);
+			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		719B5D362AC603B500E99BE0 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
 				719B5CF82AC3476100E99BE0 /* OnboardingCollectionViewCell.swift */,
 				719B5CF92AC3476100E99BE0 /* OnboardingCollectionViewCell.xib */,
 			);
-			path = Cells;
+			path = CustomCells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,8 +261,13 @@
 				719B5CDF2AC3298F00E99BE0 /* OnboardingViewController.swift in Sources */,
 				719B5CF72AC3469500E99BE0 /* OnboardingModel.swift in Sources */,
 				719B5D292AC4C58400E99BE0 /* CustomKeyboardToolbar.swift in Sources */,
+				719B5D2B2AC5C66000E99BE0 /* WebViewerController.swift in Sources */,
+				719B5D3A2AC614A600E99BE0 /* AuthHeaderView.swift in Sources */,
+				719B5D382AC607D700E99BE0 /* Constants.swift in Sources */,
 				719B5CFF2AC4422100E99BE0 /* RegisterViewController.swift in Sources */,
 				719B5D042AC46D3B00E99BE0 /* CustomButton.swift in Sources */,
+				719B5D2F2AC5D60600E99BE0 /* CustomTermsAndPrivacyTextView.swift in Sources */,
+				719B5D312AC5DAF300E99BE0 /* ForgotPasswordViewController.swift in Sources */,
 				719B5CDB2AC3298F00E99BE0 /* AppDelegate.swift in Sources */,
 				719B5CF52AC32CE300E99BE0 /* UIView+Extension.swift in Sources */,
 				719B5CDD2AC3298F00E99BE0 /* SceneDelegate.swift in Sources */,

@@ -17,7 +17,6 @@ final class OnboardingViewController: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.clipsToBounds = true
         
-        
         return collectionView
     }()
     
@@ -36,10 +35,10 @@ final class OnboardingViewController: UIViewController {
     
     
     
-    var slides = [
-        OnboardingModel(title: "Welcome to Ticketock", description: "The best place to buy movies tickets. You can effortlessly book tickets for your favorite movies all from the comfort of your device. ", image: UIImage(named: "onboarding1")!),
-        OnboardingModel(title: "Easy Ticket Booking", description: "Skip the queues and reserve your seats with just a few taps.We have the best prices", image: UIImage(named: "onboarding2")!),
-        OnboardingModel(title: "Online Payment", description: "100% secure payments. Your payment information is protected with state-of-the-art encryption, ensuring your data remains confidential and secure.", image: UIImage(named: "onboarding3")!)
+    let slides = [
+        OnboardingModel(title: "Welcome to Ticketock", description: "The best place to buy movies tickets. You can effortlessly book tickets for your favorite movies all from the comfort of your device. ", image: UIImage(named: AppConstants.Images.onboarding1)!),
+        OnboardingModel(title: "Easy Ticket Booking", description: "Skip the queues and reserve your seats with just a few taps.We have the best prices", image: UIImage(named: AppConstants.Images.onboarding2)!),
+        OnboardingModel(title: "Online Payment", description: "100% secure payments. Your payment information is protected with state-of-the-art encryption, ensuring your data remains confidential and secure.", image: UIImage(named: AppConstants.Images.onboarding3)!)
     ]
     
     var currentPage = 0 {
@@ -56,11 +55,64 @@ final class OnboardingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
+        configureUI()
         
     }
     
+    
+}
 
+
+// MARK: - Configurations
+
+extension OnboardingViewController {
+
+    private func configureUI() {
+        view.backgroundColor = .systemBackground
+        
+        view.addSubview(collectionView)
+        view.addSubview(pageControl)
+        view.addSubview(onboardingButton)
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        collectionView.register(UINib(nibName: OnboardingCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: OnboardingCollectionViewCell.identifier)
+        
+        onboardingButton.addTarget(self, action: #selector(didTapOnboardingButton), for: .touchUpInside)
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        onboardingButton.frame = CGRect(
+            x: 120,
+            y: view.bottom - 100,
+            width: view.width - 240,
+            height: 50
+        )
+        
+        pageControl.frame = CGRect(
+            x: 30,
+            y: onboardingButton.top - 40,
+            width: view.width - 60,
+            height: 25
+        )
+        
+        collectionView.frame = CGRect(
+            x: 0,
+            y: view.top,
+            width: view.width,
+            height: view.height - 150
+        )
+
+    }
+}
+
+// MARK: - Selectors
+
+extension OnboardingViewController {
     
     @objc func didTapOnboardingButton(_ sender: UIButton) {
         
@@ -78,7 +130,6 @@ final class OnboardingViewController: UIViewController {
         }
 
     }
-    
 }
 
 
@@ -111,53 +162,4 @@ extension OnboardingViewController: UICollectionViewDelegate, UICollectionViewDa
         currentPage = Int(scrollView.contentOffset.x / width)
     }
     
-}
-
-
-// MARK: - Configurations
-
-extension OnboardingViewController {
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        onboardingButton.frame = CGRect(
-            x: 120,
-            y: view.bottom - 100,
-            width: view.width - 240,
-            height: 50
-        )
-        
-        pageControl.frame = CGRect(
-            x: 30,
-            y: onboardingButton.top - 40,
-            width: view.width - 60,
-            height: 25
-        )
-        
-        collectionView.frame = CGRect(
-            x: 0,
-            y: view.top,
-            width: view.width,
-            height: view.height - 150
-        )
-
-    }
-    
-    
-    private func configure() {
-        view.backgroundColor = .systemBackground
-        
-        view.addSubview(collectionView)
-        view.addSubview(pageControl)
-        view.addSubview(onboardingButton)
-        
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        
-        collectionView.register(UINib(nibName: OnboardingCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: OnboardingCollectionViewCell.identifier)
-        
-        onboardingButton.addTarget(self, action: #selector(didTapOnboardingButton), for: .touchUpInside)
-        
-    }
 }

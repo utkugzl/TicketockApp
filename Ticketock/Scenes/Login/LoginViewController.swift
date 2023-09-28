@@ -16,33 +16,50 @@ final class LoginViewController: UIViewController {
     private let createAccountButton = CustomButton(title: "New User? Create an Account", fontSize: .med)
     private let forgotPasswordButton = CustomButton(title: "Forgot Password?", fontSize: .small)
     
-    private let headerView: UIView = {
-        let header = UIView()
-        header.clipsToBounds = true
-        
-        return header
-    }()
-    
+    private let headerView = AuthHeaderView(title: "Sign In", subtitle: "Sign In to your account")
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        configure()
+        configureUI()
+        configureToolBar()
     }
     
-    
-    
-    @objc private func didTabCreateAccountButton() {
-        let vc = RegisterViewController()
-        vc.title = "Create Account"
-        present(UINavigationController(rootViewController: vc), animated: true)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
     }
     
 }
 
+
 // MARK: - Configurations
 
 extension LoginViewController {
+    
+    private func configureUI() {
+        view.backgroundColor = .systemBackground
+        headerView.backgroundColor = .systemRed
+        
+        view.addSubview(emailField)
+        view.addSubview(passwordField)
+        view.addSubview(loginButton)
+        view.addSubview(createAccountButton)
+        view.addSubview(headerView)
+        view.addSubview(forgotPasswordButton)
+        
+        loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
+        createAccountButton.addTarget(self, action: #selector(didTabCreateAccountButton), for: .touchUpInside)
+        forgotPasswordButton.addTarget(self, action: #selector(didTabForgotPasswordButton), for: .touchUpInside)
+  
+    }
+    
+    private func configureToolBar() {
+        let keyboardToolbar = CustomKeyboardToolbar(textFields: [emailField, passwordField])
+        
+        [emailField, passwordField].forEach { $0.inputAccessoryView = keyboardToolbar }
+    }
+    
+    
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -51,14 +68,12 @@ extension LoginViewController {
             x: 0,
             y: 0,
             width: view.width,
-            height: view.height/3.0
+            height: 270
         )
-        
-        configureHeaderView()
         
         emailField.frame = CGRect(
             x: 25,
-            y: headerView.bottom + 15,
+            y: headerView.bottom + 120,
             width: view.width - 50,
             height: 52.0
         )
@@ -69,7 +84,6 @@ extension LoginViewController {
             width: view.width - 50,
             height: 52.0
         )
-        
         
         loginButton.frame = CGRect(
             x: 25,
@@ -93,37 +107,29 @@ extension LoginViewController {
         )
     
     }
-    
-    
-    private func configure() {
-        view.backgroundColor = .systemBackground
-        
-        view.addSubview(emailField)
-        view.addSubview(passwordField)
-        view.addSubview(loginButton)
-        view.addSubview(createAccountButton)
-        view.addSubview(headerView)
-        view.addSubview(forgotPasswordButton)
-        
-        //loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
-        createAccountButton.addTarget(self, action: #selector(didTabCreateAccountButton), for: .touchUpInside)
-        
-        let keyboardToolbar = CustomKeyboardToolbar(textFields: [emailField, passwordField])
-        
-        [emailField, passwordField].forEach { $0.inputAccessoryView = keyboardToolbar }
-  
-    }
-    
-    
-    private func configureHeaderView() {
-        
-        let imageView = UIImageView(image: UIImage(named: "loginHeader"))
-        headerView.addSubview(imageView)
-        imageView.contentMode = .scaleAspectFit
-        imageView.frame = CGRect(x: 0,
-                                 y: view.safeAreaInsets.top,
-                                 width: headerView.width,
-                                 height: headerView.height - view.safeAreaInsets.top
-        )
-    }
+
 }
+
+// MARK: - Selectors
+
+extension LoginViewController {
+    
+    @objc private func didTapLoginButton() {
+        
+    }
+    
+    @objc private func didTabCreateAccountButton() {
+        let vc = RegisterViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc private func didTabForgotPasswordButton() {
+        let vc = ForgotPasswordViewController()
+        vc.title = "Forgot Password"
+        navigationController?.pushViewController(vc, animated: true)
+    
+    }
+    
+}
+
+

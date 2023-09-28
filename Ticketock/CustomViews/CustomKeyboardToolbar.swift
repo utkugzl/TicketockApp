@@ -31,6 +31,7 @@ final class CustomKeyboardToolbar: UIToolbar {
     }
 }
 
+
 // MARK: - Configurations
 
 extension CustomKeyboardToolbar {
@@ -41,7 +42,7 @@ extension CustomKeyboardToolbar {
         setShadowImage(UIImage(), forToolbarPosition: .any)
         tintColor = .secondaryLabel
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let closeButton = UIBarButtonItem(image: UIImage(systemName: "keyboard.chevron.compact.down"), style: .plain, target: self, action: #selector(didTapcloseKeyboard))
+        let closeButton = UIBarButtonItem(image: UIImage(systemName: AppConstants.Symbols.closeKeyboardSymbol), style: .plain, target: self, action: #selector(didTapcloseKeyboard))
         items = [flexibleSpace, closeButton]
     }
 }
