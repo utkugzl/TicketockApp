@@ -26,6 +26,8 @@
 		719B5D312AC5DAF300E99BE0 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D302AC5DAF300E99BE0 /* ForgotPasswordViewController.swift */; };
 		719B5D382AC607D700E99BE0 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D372AC607D700E99BE0 /* Constants.swift */; };
 		719B5D3A2AC614A600E99BE0 /* AuthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D392AC614A600E99BE0 /* AuthHeaderView.swift */; };
+		719B5D3D2AC6D71400E99BE0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D3C2AC6D71400E99BE0 /* ProfileViewController.swift */; };
+		719B5D402AC6DEEE00E99BE0 /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D3F2AC6DEEE00E99BE0 /* AlertManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		719B5D302AC5DAF300E99BE0 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		719B5D372AC607D700E99BE0 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		719B5D392AC614A600E99BE0 /* AuthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
+		719B5D3C2AC6D71400E99BE0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		719B5D3F2AC6DEEE00E99BE0 /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				719B5CF32AC32ABB00E99BE0 /* Resources */,
+				719B5D3E2AC6DECA00E99BE0 /* Managers */,
 				719B5CEE2AC32A8600E99BE0 /* Extensions */,
 				719B5CF22AC32AB300E99BE0 /* Modals */,
 				719B5CF12AC32AAB00E99BE0 /* Scenes */,
@@ -121,6 +126,7 @@
 				719B5D332AC6035200E99BE0 /* Login */,
 				719B5D342AC6035D00E99BE0 /* Register */,
 				719B5D352AC6036B00E99BE0 /* ForgotPassword */,
+				719B5D3B2AC6D6D300E99BE0 /* Profile */,
 				719B5D2A2AC5C66000E99BE0 /* WebViewerController.swift */,
 			);
 			path = Scenes;
@@ -184,6 +190,22 @@
 				719B5CF92AC3476100E99BE0 /* OnboardingCollectionViewCell.xib */,
 			);
 			path = CustomCells;
+			sourceTree = "<group>";
+		};
+		719B5D3B2AC6D6D300E99BE0 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				719B5D3C2AC6D71400E99BE0 /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		719B5D3E2AC6DECA00E99BE0 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				719B5D3F2AC6DEEE00E99BE0 /* AlertManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +286,8 @@
 				719B5D2B2AC5C66000E99BE0 /* WebViewerController.swift in Sources */,
 				719B5D3A2AC614A600E99BE0 /* AuthHeaderView.swift in Sources */,
 				719B5D382AC607D700E99BE0 /* Constants.swift in Sources */,
+				719B5D3D2AC6D71400E99BE0 /* ProfileViewController.swift in Sources */,
+				719B5D402AC6DEEE00E99BE0 /* AlertManager.swift in Sources */,
 				719B5CFF2AC4422100E99BE0 /* RegisterViewController.swift in Sources */,
 				719B5D042AC46D3B00E99BE0 /* CustomButton.swift in Sources */,
 				719B5D2F2AC5D60600E99BE0 /* CustomTermsAndPrivacyTextView.swift in Sources */,

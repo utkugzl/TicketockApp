@@ -115,7 +115,10 @@ extension LoginViewController {
 extension LoginViewController {
     
     @objc private func didTapLoginButton() {
-        
+        let vc = ProfileViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .fullScreen
+        present(nav, animated: true)
     }
     
     @objc private func didTabCreateAccountButton() {

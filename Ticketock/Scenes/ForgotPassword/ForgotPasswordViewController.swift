@@ -35,6 +35,8 @@ extension ForgotPasswordViewController {
 
         view.addSubview(emailField)
         view.addSubview(resetPasswordButton)
+        
+        resetPasswordButton.addTarget(self, action: #selector(didTapResetPasswordButton), for: .touchUpInside)
     }
 
 
@@ -56,6 +58,19 @@ extension ForgotPasswordViewController {
                                   y: emailField.bottom + 15,
                                   width: view.width - 40,
                                   height: 52)
+
+    }
+}
+
+
+// MARK: - Selectors
+
+extension ForgotPasswordViewController {
+    
+    @objc func didTapResetPasswordButton() {
+        guard let email = emailField.text, !email.isEmpty else { return }
+        
+        // TODO: - Email validation
 
     }
 }
