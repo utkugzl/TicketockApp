@@ -22,8 +22,8 @@ final class CustomTextField: UITextField {
         self.authFieldType = authFieldType
         super.init(frame: .zero)
         
-        self.returnKeyType = .done
         self.leftViewMode = .always
+        self.returnKeyType = .done
         self.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
         self.autocapitalizationType = .none
         self.autocorrectionType = .no

@@ -11,7 +11,7 @@ class ForgotPasswordViewController: UIViewController {
     
     private let emailField = CustomTextField(authFieldType: .email)
     private let resetPasswordButton = CustomButton(title: "Reset Password", hasBackground: true, fontSize: .big)
-
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +60,6 @@ extension ForgotPasswordViewController {
             emailField.heightAnchor.constraint(equalToConstant: 52),
         ])
     }
-    
     private func makeResetPasswordButton() {
         resetPasswordButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

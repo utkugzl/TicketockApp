@@ -54,10 +54,11 @@ extension RegisterViewController {
         makeRegisterButton()
         makeTermsTextView()
         
+        [usernameField, emailField, passwordField].forEach { $0.delegate = self }
+
         termsTextView.delegate = self
         
         registerButton.addTarget(self, action: #selector(didTapRegisterButton), for: .touchUpInside)
-    
     }
     
     
@@ -66,6 +67,7 @@ extension RegisterViewController {
 
         [usernameField, emailField, passwordField].forEach { $0.inputAccessoryView = keyboardToolbar }
     }
+    
     
     private func makeHeaderView() {
         headerView.translatesAutoresizingMaskIntoConstraints = false
@@ -103,7 +105,6 @@ extension RegisterViewController {
             passwordField.heightAnchor.constraint(equalToConstant: 52),
         ])
     }
-    
     private func makeRegisterButton() {
         registerButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -113,7 +114,6 @@ extension RegisterViewController {
             registerButton.heightAnchor.constraint(equalToConstant: 52),
         ])
     }
-    
     private func makeTermsTextView() {
         termsTextView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -170,5 +170,19 @@ extension RegisterViewController: UITextViewDelegate {
         present(nav, animated: true)
     }
     
+}
 
+
+// MARK: - UITextFieldDelegate
+
+extension RegisterViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == usernameField {
+            emailField.becomeFirstResponder()
+        } else if textField == emailField {
+            passwordField.becomeFirstResponder()
+        } // Diğer text field'larınız için aynı şekilde devam edin.
+        
+        return true
+    }
 }

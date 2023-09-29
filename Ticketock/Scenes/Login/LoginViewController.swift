@@ -54,6 +54,8 @@ extension LoginViewController {
         makeCreateAccountButton()
         makeForgotPasswordButton()
         
+        [emailField, passwordField].forEach { $0.delegate = self }
+        
         loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
         createAccountButton.addTarget(self, action: #selector(didTabCreateAccountButton), for: .touchUpInside)
         forgotPasswordButton.addTarget(self, action: #selector(didTabForgotPasswordButton), for: .touchUpInside)
@@ -65,6 +67,7 @@ extension LoginViewController {
         
         [emailField, passwordField].forEach { $0.inputAccessoryView = keyboardToolbar }
     }
+    
     
     private func makeHeaderView() {
         headerView.translatesAutoresizingMaskIntoConstraints = false
@@ -102,7 +105,6 @@ extension LoginViewController {
             loginButton.heightAnchor.constraint(equalToConstant: 52),
         ])
     }
-    
     private func makeCreateAccountButton() {
         createAccountButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -112,7 +114,6 @@ extension LoginViewController {
             createAccountButton.heightAnchor.constraint(equalToConstant: 52),
         ])
     }
-    
     private func makeForgotPasswordButton() {
         forgotPasswordButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -123,6 +124,18 @@ extension LoginViewController {
         ])
     }
 
+}
+
+// MARK: - UITextFieldDelegate
+
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailField {
+            passwordField.becomeFirstResponder()
+        }
+        
+        return true
+    }
 }
 
 // MARK: - Selectors
