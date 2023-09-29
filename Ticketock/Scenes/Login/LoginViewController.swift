@@ -47,11 +47,18 @@ extension LoginViewController {
         view.addSubview(headerView)
         view.addSubview(forgotPasswordButton)
         
+        makeHeaderView()
+        makeEmailField()
+        makePasswordField()
+        makeLoginButton()
+        makeCreateAccountButton()
+        makeForgotPasswordButton()
+        
         loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
         createAccountButton.addTarget(self, action: #selector(didTabCreateAccountButton), for: .touchUpInside)
         forgotPasswordButton.addTarget(self, action: #selector(didTabForgotPasswordButton), for: .touchUpInside)
-  
     }
+    
     
     private func configureToolBar() {
         let keyboardToolbar = CustomKeyboardToolbar(textFields: [emailField, passwordField])
@@ -59,53 +66,61 @@ extension LoginViewController {
         [emailField, passwordField].forEach { $0.inputAccessoryView = keyboardToolbar }
     }
     
+    private func makeHeaderView() {
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            headerView.topAnchor.constraint(equalTo: view.topAnchor),
+            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: 270),
+        ])
+    }
+    private func makeEmailField() {
+        emailField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            emailField.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 120),
+            emailField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            emailField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            emailField.heightAnchor.constraint(equalToConstant: 52),
+        ])
+    }
+    private func makePasswordField() {
+        passwordField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 15),
+            passwordField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            passwordField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            passwordField.heightAnchor.constraint(equalToConstant: 52),
+        ])
+    }
+    private func makeLoginButton() {
+        loginButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 15),
+            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            loginButton.heightAnchor.constraint(equalToConstant: 52),
+        ])
+    }
     
+    private func makeCreateAccountButton() {
+        createAccountButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            createAccountButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 10),
+            createAccountButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            createAccountButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            createAccountButton.heightAnchor.constraint(equalToConstant: 52),
+        ])
+    }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        headerView.frame = CGRect(
-            x: 0,
-            y: 0,
-            width: view.width,
-            height: 270
-        )
-        
-        emailField.frame = CGRect(
-            x: 25,
-            y: headerView.bottom + 120,
-            width: view.width - 50,
-            height: 52.0
-        )
-        
-        passwordField.frame = CGRect(
-            x: 25,
-            y: emailField.bottom + 15,
-            width: view.width - 50,
-            height: 52.0
-        )
-        
-        loginButton.frame = CGRect(
-            x: 25,
-            y: passwordField.bottom + 15,
-            width: view.width - 50,
-            height: 52.0
-        )
-        
-        createAccountButton.frame = CGRect(
-            x: 25,
-            y: loginButton.bottom + 10,
-            width: view.width - 50,
-            height: 52.0
-        )
-        
-        forgotPasswordButton.frame = CGRect(
-            x: 25,
-            y: createAccountButton.bottom + 5,
-            width: view.width - 50,
-            height: 52.0
-        )
-    
+    private func makeForgotPasswordButton() {
+        forgotPasswordButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            forgotPasswordButton.topAnchor.constraint(equalTo: createAccountButton.bottomAnchor, constant: 5),
+            forgotPasswordButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
+            forgotPasswordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            forgotPasswordButton.heightAnchor.constraint(equalToConstant: 52)
+        ])
     }
 
 }

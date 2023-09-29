@@ -55,26 +55,29 @@ extension AuthHeaderView {
         addSubview(imageView)
         addSubview(titleLabel)
         addSubview(subtitleLabel)
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
         
-        let imageSize: CGFloat = bounds.width
-        imageView.frame = CGRect(x: 0,
-                                 y: 100,
-                                 width: imageSize,
-                                 height: 200)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        subtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        titleLabel.frame = CGRect(x: 10,
-                                  y: imageView.bottom,
-                                  width: width - 20,
-                                  height: 40)
-        
-        subtitleLabel.frame = CGRect(x: 10,
-                                     y: titleLabel.bottom,
-                                     width: width - 20,
-                                     height: 40)
-    }
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: topAnchor, constant: 100),
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: 200),
+            
+            titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            titleLabel.heightAnchor.constraint(equalToConstant: 40),
+            
+            subtitleLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
+            subtitleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            subtitleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            subtitleLabel.heightAnchor.constraint(equalToConstant: 40),
+            
+            
+        ])
 
+    }
 }

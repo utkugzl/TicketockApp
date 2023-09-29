@@ -47,6 +47,13 @@ extension RegisterViewController {
         view.addSubview(registerButton)
         view.addSubview(termsTextView)
         
+        makeHeaderView()
+        makeUsernameField()
+        makeEmailField()
+        makePasswordField()
+        makeRegisterButton()
+        makeTermsTextView()
+        
         termsTextView.delegate = self
         
         registerButton.addTarget(self, action: #selector(didTapRegisterButton), for: .touchUpInside)
@@ -60,48 +67,63 @@ extension RegisterViewController {
         [usernameField, emailField, passwordField].forEach { $0.inputAccessoryView = keyboardToolbar }
     }
     
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        headerView.frame = CGRect(
-            x: 0,
-            y: 0,
-            width: view.width,
-            height: 270
-        )
-        
-        usernameField.frame = CGRect(x: 20,
-                                     y: headerView.bottom + 120,
-                                     width: view.width - 40,
-                                     height: 52
-        )
-        
-        
-        emailField.frame = CGRect(x: 20,
-                                  y: usernameField.bottom + 15,
-                                  width: view.width - 40,
-                                  height: 52
-        )
-        
-        passwordField.frame = CGRect(x: 20,
-                                  y: emailField.bottom + 15,
-                                  width: view.width - 40,
-                                  height: 52
-        )
-        
-        registerButton.frame = CGRect(x: 20,
-                                     y: passwordField.bottom + 25,
-                                     width: view.width - 40,
-                                     height: 52
-        )
-        
-        termsTextView.frame = CGRect(x: 20,
-                                     y: registerButton.bottom + 5,
-                                     width: view.width - 40,
-                                     height: 52
-        )
+    private func makeHeaderView() {
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            headerView.topAnchor.constraint(equalTo: view.topAnchor),
+            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: 270),
+        ])
     }
+    private func makeUsernameField() {
+        usernameField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            usernameField.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 120),
+            usernameField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            usernameField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            usernameField.heightAnchor.constraint(equalToConstant: 52),
+        ])
+    }
+    private func makeEmailField() {
+        emailField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            emailField.topAnchor.constraint(equalTo: usernameField.bottomAnchor, constant: 15),
+            emailField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            emailField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            emailField.heightAnchor.constraint(equalToConstant: 52),
+        ])
+    }
+    private func makePasswordField() {
+        passwordField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 15),
+            passwordField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            passwordField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            passwordField.heightAnchor.constraint(equalToConstant: 52),
+        ])
+    }
+    
+    private func makeRegisterButton() {
+        registerButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            registerButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 25),
+            registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            registerButton.heightAnchor.constraint(equalToConstant: 52),
+        ])
+    }
+    
+    private func makeTermsTextView() {
+        termsTextView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            termsTextView.topAnchor.constraint(equalTo: registerButton.bottomAnchor, constant: 5),
+            termsTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            termsTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            termsTextView.heightAnchor.constraint(equalToConstant: 52),
+        ])
+    }
+ 
 }
 
 

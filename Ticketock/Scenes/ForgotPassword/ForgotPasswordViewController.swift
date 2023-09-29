@@ -26,6 +26,7 @@ class ForgotPasswordViewController: UIViewController {
 
 }
 
+
 // MARK: - Configurations
 
 extension ForgotPasswordViewController {
@@ -35,6 +36,9 @@ extension ForgotPasswordViewController {
 
         view.addSubview(emailField)
         view.addSubview(resetPasswordButton)
+
+        makeEmailField()
+        makeResetPasswordButton()
         
         resetPasswordButton.addTarget(self, action: #selector(didTapResetPasswordButton), for: .touchUpInside)
     }
@@ -45,20 +49,26 @@ extension ForgotPasswordViewController {
 
         emailField.inputAccessoryView = keyboardToolbar
     }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
-        emailField.frame = CGRect(x: 20,
-                                     y: view.safeAreaInsets.top + 30,
-                                     width: view.width - 40,
-                                     height: 52)
-
-        resetPasswordButton.frame = CGRect(x: 20,
-                                  y: emailField.bottom + 15,
-                                  width: view.width - 40,
-                                  height: 52)
-
+    
+    
+    private func makeEmailField() {
+        emailField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            emailField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
+            emailField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            emailField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            emailField.heightAnchor.constraint(equalToConstant: 52),
+        ])
+    }
+    
+    private func makeResetPasswordButton() {
+        resetPasswordButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            resetPasswordButton.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 15),
+            resetPasswordButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            resetPasswordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            resetPasswordButton.heightAnchor.constraint(equalToConstant: 52),
+        ])
     }
 }
 
