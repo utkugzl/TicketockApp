@@ -83,4 +83,52 @@ final class AuthManager {
             completion(error)
         }
     }
+    
+    
+    /// A method to resert user password
+    /// - Parameters:
+    ///   - email: User email
+    ///   - completion: A completion with one values...
+    ///   ///   Error?: An error optianol error if the firebase provides one
+    public func forgotPassword(with email: String, completion: @escaping (Error?) -> Void) {
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+            if let error = error {
+                completion(error)
+                return
+            }
+        }
+    }
+    
+    public func fetchUser(completion: @escaping (UserModel?,Error?) -> Void) {
+        guard let userUID = Auth.auth().currentUser?.uid else { return }
+        
+        let db = Firestore.firestore()
+        
+        db.collection("users").document(userUID).getDocument { snapshot, error in
+            if let error = error {
+                completion(nil,error)
+                return
+            }
+            
+            guard let snapshot = snapshot else {
+                completion(nil,nil)
+                return
+            }
+            
+            guard let data = snapshot.data() else {
+                completion(nil,nil)
+                return
+            }
+            
+            let username = data["username"] as? String ?? "No username"
+            let email = data["email"] as? String ?? "No email"
+            
+            let user = UserModel(username: username, email: email, userUID: userUID)
+            
+            completion(user,nil)
+        }
+    
+    
+        
+    }
 }

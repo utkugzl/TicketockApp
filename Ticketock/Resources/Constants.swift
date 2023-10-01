@@ -25,5 +25,10 @@ struct AppConstants {
         static let autheHeaderViewImage = "authHeader"
     }
     
+    struct Regex {
+        static let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.{1}[A-Za-z]{2,64}"
+        static let usernameRegex = "\\w{4,24}"
+        static let passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$#!%*?&])[A-Za-z\\d@$#!%*?&]{6,32}$"
+    }
     
 }

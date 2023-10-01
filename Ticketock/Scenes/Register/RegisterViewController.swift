@@ -132,7 +132,52 @@ extension RegisterViewController {
 extension RegisterViewController {
     
     @objc private func didTapRegisterButton() {
-
+//        guard let username = usernameField.text, !username.isEmpty,
+//              let email = emailField.text, !email.isEmpty,
+//              let password = passwordField.text, !password.isEmpty else {
+//            //presentAlertOnMainThread(title: "Empty Fields", message: "Please enter your email and password", buttonTitle: "Ok")
+//            AlertManager.showInvalidUsernameAlert(on: self)
+//            return
+//        }
+        
+        let registerUserRequest = RegisterUserModal(
+            username: usernameField.text ?? "",
+            email: emailField.text ?? "",
+            password: passwordField.text ?? ""
+        )
+        
+        // Username check
+        if !ValidateManager.isValidUsername(for: registerUserRequest.username) {
+            AlertManager.showInvalidUsernameAlert(on: self)
+            return
+        }
+        // Email check
+        if !ValidateManager.isValidEmail(for: registerUserRequest.email) {
+            AlertManager.showInvalidEmailAlert(on: self)
+            return
+        }
+        // Password check
+//        if !ValidateManager.isValidPassword(for: registerUserRequest.password) {
+//            AlertManager.showInvalidPasswordAlert(on: self)
+//            return
+//        }
+        
+        AuthManager.shared.registerUser(with: registerUserRequest) { [weak self] wasRegistered, error in
+            guard let self = self else { return }
+            
+            if let error = error {
+                AlertManager.showRegistrationErrorAlert(on: self, with: error)
+                return
+            }
+            
+            if wasRegistered {
+                if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+                    sceneDelegate.checkAuthentication()
+                }
+            } else {
+                AlertManager.showRegistrationErrorAlert(on: self)
+            }
+        }
     }
 
 }

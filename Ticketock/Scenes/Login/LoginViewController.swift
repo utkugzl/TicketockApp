@@ -143,10 +143,41 @@ extension LoginViewController: UITextFieldDelegate {
 extension LoginViewController {
     
     @objc private func didTapLoginButton() {
-        let vc = ProfileViewController()
-        let nav = UINavigationController(rootViewController: vc)
-        nav.modalPresentationStyle = .fullScreen
-        present(nav, animated: true)
+//        guard let email = emailField.text, !email.isEmpty,
+//              let password = passwordField.text, !password.isEmpty else {
+//            //presentAlertOnMainThread(title: "Empty Fields", message: "Please enter your email and password", buttonTitle: "Ok")
+//            return
+//        }
+        
+        let loginUserRequest = LoginUserModal(
+            email: emailField.text ?? "",
+            password: passwordField.text ?? ""
+        )
+        
+        // Email check
+        if !ValidateManager.isValidEmail(for: loginUserRequest.email) {
+            AlertManager.showInvalidEmailAlert(on: self)
+            return
+        }
+        // Password check
+//        if !ValidateManager.isValidPassword(for: registerUserRequest.password) {
+//            AlertManager.showInvalidPasswordAlert(on: self)
+//            return
+//        }
+        
+        AuthManager.shared.signIn(with: loginUserRequest) { [weak self] error in
+            guard let self = self else { return }
+            if let error = error {
+                AlertManager.showSignInErrorAlert(on: self, with: error)
+                return
+            }
+            
+            if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+                sceneDelegate.checkAuthentication()
+            } else {
+                AlertManager.showSignInErrorAlert(on: self)
+            }
+        }
     }
     
     @objc private func didTabCreateAccountButton() {

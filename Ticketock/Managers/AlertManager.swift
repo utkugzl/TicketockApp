@@ -29,11 +29,11 @@ extension AlertManager {
     }
     
     public static func showInvalidPasswordAlert(on vc: UIViewController) {
-        showBasicAlert(on: vc, title: "Invalid Password", message: "Please enter a valid password.")
+        showBasicAlert(on: vc, title: "Invalid Password", message: "The password must contain at least one lowercase letter, at least one special character.")
     }
     
     public static func showInvalidUsernameAlert(on vc: UIViewController) {
-        showBasicAlert(on: vc, title: "Invalid Username", message: "Please enter a valid username.")
+        showBasicAlert(on: vc, title: "Invalid Username", message: "The username must be between 4 and 24 characters in length and contain only letters and numbers.")
     }
 }
 
