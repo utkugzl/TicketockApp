@@ -38,7 +38,6 @@ extension LoginViewController {
     
     private func configureUI() {
         view.backgroundColor = .systemBackground
-        headerView.backgroundColor = .systemRed
         
         view.addSubview(emailField)
         view.addSubview(passwordField)
@@ -75,15 +74,15 @@ extension LoginViewController {
             headerView.topAnchor.constraint(equalTo: view.topAnchor),
             headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 270),
+            headerView.heightAnchor.constraint(equalToConstant: 280),
         ])
     }
     private func makeEmailField() {
         emailField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            emailField.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 120),
-            emailField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-            emailField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            emailField.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 100),
+            emailField.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+            emailField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             emailField.heightAnchor.constraint(equalToConstant: 52),
         ])
     }
@@ -91,8 +90,8 @@ extension LoginViewController {
         passwordField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 15),
-            passwordField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-            passwordField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            passwordField.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+            passwordField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             passwordField.heightAnchor.constraint(equalToConstant: 52),
         ])
     }
@@ -100,26 +99,26 @@ extension LoginViewController {
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 15),
-            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            loginButton.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+            loginButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             loginButton.heightAnchor.constraint(equalToConstant: 52),
         ])
     }
     private func makeCreateAccountButton() {
         createAccountButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            createAccountButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 10),
-            createAccountButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-            createAccountButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            createAccountButton.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 5),
+            createAccountButton.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+            createAccountButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             createAccountButton.heightAnchor.constraint(equalToConstant: 52),
         ])
     }
     private func makeForgotPasswordButton() {
         forgotPasswordButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            forgotPasswordButton.topAnchor.constraint(equalTo: createAccountButton.bottomAnchor, constant: 5),
-            forgotPasswordButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),
-            forgotPasswordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),
+            forgotPasswordButton.topAnchor.constraint(equalTo: createAccountButton.bottomAnchor),
+            forgotPasswordButton.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+            forgotPasswordButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             forgotPasswordButton.heightAnchor.constraint(equalToConstant: 52)
         ])
     }
@@ -155,7 +154,7 @@ extension LoginViewController {
         )
         
         // Email check
-        if !ValidateManager.isValidEmail(for: loginUserRequest.email) {
+        if !ValidationManager.isValidEmail(for: loginUserRequest.email) {
             AlertManager.showInvalidEmailAlert(on: self)
             return
         }

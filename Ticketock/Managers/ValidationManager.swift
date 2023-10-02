@@ -8,7 +8,7 @@
 import Foundation
 
 
-class ValidateManager {
+final class ValidationManager {
     
     static func isValidEmail(for email: String) -> Bool {
         let email = email.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -34,3 +34,4 @@ class ValidateManager {
         return passwordPredicate.evaluate(with: password)
     }
 }
+

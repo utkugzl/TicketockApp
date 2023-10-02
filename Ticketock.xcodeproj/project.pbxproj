@@ -36,8 +36,11 @@
 		719B5D4D2AC875BA00E99BE0 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D4C2AC875BA00E99BE0 /* AuthManager.swift */; };
 		719B5D4F2AC876F200E99BE0 /* RegisterUserModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D4E2AC876F200E99BE0 /* RegisterUserModal.swift */; };
 		719B5D512AC8808400E99BE0 /* LoginUserModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D502AC8808400E99BE0 /* LoginUserModal.swift */; };
-		719B5D532AC9A87100E99BE0 /* ValidateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D522AC9A87100E99BE0 /* ValidateManager.swift */; };
+		719B5D532AC9A87100E99BE0 /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D522AC9A87100E99BE0 /* ValidationManager.swift */; };
 		719B5D552AC9BE9C00E99BE0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D542AC9BE9C00E99BE0 /* UserModel.swift */; };
+		719B5D582ACB493B00E99BE0 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D572ACB493B00E99BE0 /* MainTabBarViewController.swift */; };
+		719B5D5C2ACB4A1D00E99BE0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D5B2ACB4A1D00E99BE0 /* HomeViewController.swift */; };
+		719B5D5E2ACB4A4300E99BE0 /* BookedTicketsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D5D2ACB4A4300E99BE0 /* BookedTicketsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,8 +71,11 @@
 		719B5D4C2AC875BA00E99BE0 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		719B5D4E2AC876F200E99BE0 /* RegisterUserModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserModal.swift; sourceTree = "<group>"; };
 		719B5D502AC8808400E99BE0 /* LoginUserModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserModal.swift; sourceTree = "<group>"; };
-		719B5D522AC9A87100E99BE0 /* ValidateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateManager.swift; sourceTree = "<group>"; };
+		719B5D522AC9A87100E99BE0 /* ValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManager.swift; sourceTree = "<group>"; };
 		719B5D542AC9BE9C00E99BE0 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		719B5D572ACB493B00E99BE0 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		719B5D5B2ACB4A1D00E99BE0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		719B5D5D2ACB4A4300E99BE0 /* BookedTicketsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookedTicketsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +153,9 @@
 				719B5D332AC6035200E99BE0 /* Login */,
 				719B5D342AC6035D00E99BE0 /* Register */,
 				719B5D352AC6036B00E99BE0 /* ForgotPassword */,
+				719B5D562ACB48CE00E99BE0 /* MainTabBar */,
+				719B5D592ACB49D600E99BE0 /* Home */,
+				719B5D5A2ACB49E400E99BE0 /* BookedTickets */,
 				719B5D3B2AC6D6D300E99BE0 /* Profile */,
 				719B5D2A2AC5C66000E99BE0 /* WebViewerController.swift */,
 			);
@@ -229,9 +238,33 @@
 			children = (
 				719B5D3F2AC6DEEE00E99BE0 /* AlertManager.swift */,
 				719B5D4C2AC875BA00E99BE0 /* AuthManager.swift */,
-				719B5D522AC9A87100E99BE0 /* ValidateManager.swift */,
+				719B5D522AC9A87100E99BE0 /* ValidationManager.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		719B5D562ACB48CE00E99BE0 /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				719B5D572ACB493B00E99BE0 /* MainTabBarViewController.swift */,
+			);
+			path = MainTabBar;
+			sourceTree = "<group>";
+		};
+		719B5D592ACB49D600E99BE0 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				719B5D5B2ACB4A1D00E99BE0 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		719B5D5A2ACB49E400E99BE0 /* BookedTickets */ = {
+			isa = PBXGroup;
+			children = (
+				719B5D5D2ACB4A4300E99BE0 /* BookedTicketsViewController.swift */,
+			);
+			path = BookedTickets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -315,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				719B5D5C2ACB4A1D00E99BE0 /* HomeViewController.swift in Sources */,
 				719B5CFD2AC4366300E99BE0 /* LoginViewController.swift in Sources */,
 				719B5CDF2AC3298F00E99BE0 /* OnboardingViewController.swift in Sources */,
 				719B5CF72AC3469500E99BE0 /* OnboardingModel.swift in Sources */,
@@ -322,14 +356,16 @@
 				719B5D2B2AC5C66000E99BE0 /* WebViewerController.swift in Sources */,
 				719B5D3A2AC614A600E99BE0 /* AuthHeaderView.swift in Sources */,
 				719B5D382AC607D700E99BE0 /* Constants.swift in Sources */,
+				719B5D5E2ACB4A4300E99BE0 /* BookedTicketsViewController.swift in Sources */,
 				719B5D3D2AC6D71400E99BE0 /* ProfileViewController.swift in Sources */,
 				719B5D552AC9BE9C00E99BE0 /* UserModel.swift in Sources */,
+				719B5D582ACB493B00E99BE0 /* MainTabBarViewController.swift in Sources */,
 				719B5D402AC6DEEE00E99BE0 /* AlertManager.swift in Sources */,
 				719B5CFF2AC4422100E99BE0 /* RegisterViewController.swift in Sources */,
 				719B5D042AC46D3B00E99BE0 /* CustomButton.swift in Sources */,
 				719B5D2F2AC5D60600E99BE0 /* CustomTermsAndPrivacyTextView.swift in Sources */,
 				719B5D312AC5DAF300E99BE0 /* ForgotPasswordViewController.swift in Sources */,
-				719B5D532AC9A87100E99BE0 /* ValidateManager.swift in Sources */,
+				719B5D532AC9A87100E99BE0 /* ValidationManager.swift in Sources */,
 				719B5CDB2AC3298F00E99BE0 /* AppDelegate.swift in Sources */,
 				719B5D4D2AC875BA00E99BE0 /* AuthManager.swift in Sources */,
 				719B5D4F2AC876F200E99BE0 /* RegisterUserModal.swift in Sources */,
@@ -405,7 +441,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -459,7 +495,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -482,6 +518,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -508,6 +545,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -38,7 +38,6 @@ extension RegisterViewController {
     
     private func configureUI() {
         view.backgroundColor = .systemBackground
-        headerView.backgroundColor = .systemRed
         
         view.addSubview(headerView)
         view.addSubview(usernameField)
@@ -53,7 +52,7 @@ extension RegisterViewController {
         makePasswordField()
         makeRegisterButton()
         makeTermsTextView()
-        
+          
         [usernameField, emailField, passwordField].forEach { $0.delegate = self }
 
         termsTextView.delegate = self
@@ -72,18 +71,18 @@ extension RegisterViewController {
     private func makeHeaderView() {
         headerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            headerView.topAnchor.constraint(equalTo: view.topAnchor),
+            headerView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
             headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 270),
+            headerView.heightAnchor.constraint(equalToConstant: 280),
         ])
     }
     private func makeUsernameField() {
         usernameField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            usernameField.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 120),
-            usernameField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            usernameField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            usernameField.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 50),
+            usernameField.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+            usernameField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             usernameField.heightAnchor.constraint(equalToConstant: 52),
         ])
     }
@@ -91,8 +90,8 @@ extension RegisterViewController {
         emailField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             emailField.topAnchor.constraint(equalTo: usernameField.bottomAnchor, constant: 15),
-            emailField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            emailField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            emailField.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+            emailField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             emailField.heightAnchor.constraint(equalToConstant: 52),
         ])
     }
@@ -100,8 +99,8 @@ extension RegisterViewController {
         passwordField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 15),
-            passwordField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            passwordField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            passwordField.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+            passwordField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             passwordField.heightAnchor.constraint(equalToConstant: 52),
         ])
     }
@@ -109,8 +108,8 @@ extension RegisterViewController {
         registerButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             registerButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 25),
-            registerButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            registerButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            registerButton.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+            registerButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             registerButton.heightAnchor.constraint(equalToConstant: 52),
         ])
     }
@@ -118,8 +117,8 @@ extension RegisterViewController {
         termsTextView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             termsTextView.topAnchor.constraint(equalTo: registerButton.bottomAnchor, constant: 5),
-            termsTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            termsTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            termsTextView.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
+            termsTextView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             termsTextView.heightAnchor.constraint(equalToConstant: 52),
         ])
     }
@@ -147,12 +146,12 @@ extension RegisterViewController {
         )
         
         // Username check
-        if !ValidateManager.isValidUsername(for: registerUserRequest.username) {
+        if !ValidationManager.isValidUsername(for: registerUserRequest.username) {
             AlertManager.showInvalidUsernameAlert(on: self)
             return
         }
         // Email check
-        if !ValidateManager.isValidEmail(for: registerUserRequest.email) {
+        if !ValidationManager.isValidEmail(for: registerUserRequest.email) {
             AlertManager.showInvalidEmailAlert(on: self)
             return
         }

@@ -55,8 +55,8 @@ extension ForgotPasswordViewController {
         emailField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             emailField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30),
-            emailField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            emailField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            emailField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emailField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             emailField.heightAnchor.constraint(equalToConstant: 52),
         ])
     }
@@ -64,8 +64,8 @@ extension ForgotPasswordViewController {
         resetPasswordButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             resetPasswordButton.topAnchor.constraint(equalTo: emailField.bottomAnchor, constant: 15),
-            resetPasswordButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            resetPasswordButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            resetPasswordButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            resetPasswordButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             resetPasswordButton.heightAnchor.constraint(equalToConstant: 52),
         ])
     }
@@ -79,7 +79,7 @@ extension ForgotPasswordViewController {
     @objc func didTapResetPasswordButton() {
         let email = emailField.text ?? ""
         
-        if !ValidateManager.isValidEmail(for: email) {
+        if !ValidationManager.isValidEmail(for: email) {
             AlertManager.showInvalidEmailAlert(on: self)
             return
         }
