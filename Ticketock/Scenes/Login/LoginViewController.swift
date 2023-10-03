@@ -31,8 +31,20 @@ final class LoginViewController: UIViewController {
     
 }
 
+// MARK: - UITextFieldDelegate
 
-// MARK: - Configurations
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailField {
+            passwordField.becomeFirstResponder()
+        }
+        
+        return true
+    }
+}
+
+
+// MARK: - Configure UI
 
 extension LoginViewController {
     
@@ -125,17 +137,6 @@ extension LoginViewController {
 
 }
 
-// MARK: - UITextFieldDelegate
-
-extension LoginViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == emailField {
-            passwordField.becomeFirstResponder()
-        }
-        
-        return true
-    }
-}
 
 // MARK: - Selectors
 

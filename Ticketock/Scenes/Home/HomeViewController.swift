@@ -7,10 +7,22 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        configureUI()
     }
 }
+
+
+
+// MARK: - Configure UI
+
+extension HomeViewController {
+    
+    private func configureUI() {
+        view.backgroundColor = .systemBackground
+    }
+}
+

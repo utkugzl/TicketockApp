@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController {
     
     private let label: UILabel = {
         let label = UILabel()
@@ -34,19 +34,18 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-    
-
 
 }
 
-// MARK: - Configurations
+
+// MARK: - Configure UI
 
 extension ProfileViewController {
         
         private func configureUI() {
             view.backgroundColor = .systemBackground
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(didTapLogOutButton))
-            
+
             view.addSubview(label)
             
             label.translatesAutoresizingMaskIntoConstraints = false
@@ -56,10 +55,9 @@ extension ProfileViewController {
                 label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
             ])
         }
-        
-        
-    
+  
 }
+
 
 // MARK: - Selectors
 

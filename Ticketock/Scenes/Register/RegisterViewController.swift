@@ -32,7 +32,57 @@ final class RegisterViewController: UIViewController {
 }
 
 
-//MARK: - Configurations
+// MARK: - UITextViewDelegate
+
+extension RegisterViewController: UITextViewDelegate {
+    
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
+        
+        guard let identifier = URL.scheme else { return false }
+        
+        switch identifier {
+        case "terms":
+            showWebViewerController(with: "https://policies.google.com/terms?hl=en")
+            return false
+        case "privacy":
+            showWebViewerController(with: "https://policies.google.com/privacy?hl=en")
+            return false
+        default:
+            return false
+        }
+    }
+    
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        textView.delegate = nil
+        textView.selectedTextRange = nil
+        textView.delegate = self
+    }
+    
+    private func showWebViewerController(with urlString: String) {
+        let vc = WebViewerController(with: urlString)
+        let nav = UINavigationController(rootViewController: vc)
+        present(nav, animated: true)
+    }
+    
+}
+
+
+// MARK: - UITextFieldDelegate
+
+extension RegisterViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == usernameField {
+            emailField.becomeFirstResponder()
+        } else if textField == emailField {
+            passwordField.becomeFirstResponder()
+        } // Diğer text field'larınız için aynı şekilde devam edin.
+        
+        return true
+    }
+}
+
+
+// MARK: - Configure UI
 
 extension RegisterViewController {
     
@@ -181,52 +231,3 @@ extension RegisterViewController {
 
 }
 
-
-// MARK: - UITextViewDelegate
-
-extension RegisterViewController: UITextViewDelegate {
-    
-    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-        
-        guard let identifier = URL.scheme else { return false }
-        
-        switch identifier {
-        case "terms":
-            showWebViewerController(with: "https://policies.google.com/terms?hl=en")
-            return false
-        case "privacy":
-            showWebViewerController(with: "https://policies.google.com/privacy?hl=en")
-            return false
-        default:
-            return false
-        }
-    }
-    
-    func textViewDidChangeSelection(_ textView: UITextView) {
-        textView.delegate = nil
-        textView.selectedTextRange = nil
-        textView.delegate = self
-    }
-    
-    private func showWebViewerController(with urlString: String) {
-        let vc = WebViewerController(with: urlString)
-        let nav = UINavigationController(rootViewController: vc)
-        present(nav, animated: true)
-    }
-    
-}
-
-
-// MARK: - UITextFieldDelegate
-
-extension RegisterViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == usernameField {
-            emailField.becomeFirstResponder()
-        } else if textField == emailField {
-            passwordField.becomeFirstResponder()
-        } // Diğer text field'larınız için aynı şekilde devam edin.
-        
-        return true
-    }
-}

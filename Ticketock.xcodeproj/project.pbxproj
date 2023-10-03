@@ -38,9 +38,9 @@
 		719B5D512AC8808400E99BE0 /* LoginUserModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D502AC8808400E99BE0 /* LoginUserModal.swift */; };
 		719B5D532AC9A87100E99BE0 /* ValidationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D522AC9A87100E99BE0 /* ValidationManager.swift */; };
 		719B5D552AC9BE9C00E99BE0 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D542AC9BE9C00E99BE0 /* UserModel.swift */; };
-		719B5D582ACB493B00E99BE0 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D572ACB493B00E99BE0 /* MainTabBarViewController.swift */; };
 		719B5D5C2ACB4A1D00E99BE0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D5B2ACB4A1D00E99BE0 /* HomeViewController.swift */; };
 		719B5D5E2ACB4A4300E99BE0 /* BookedTicketsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D5D2ACB4A4300E99BE0 /* BookedTicketsViewController.swift */; };
+		719B5DB32ACCA38C00E99BE0 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5DB22ACCA38C00E99BE0 /* MainTabBarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,9 +73,9 @@
 		719B5D502AC8808400E99BE0 /* LoginUserModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginUserModal.swift; sourceTree = "<group>"; };
 		719B5D522AC9A87100E99BE0 /* ValidationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationManager.swift; sourceTree = "<group>"; };
 		719B5D542AC9BE9C00E99BE0 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
-		719B5D572ACB493B00E99BE0 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 		719B5D5B2ACB4A1D00E99BE0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		719B5D5D2ACB4A4300E99BE0 /* BookedTicketsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookedTicketsViewController.swift; sourceTree = "<group>"; };
+		719B5DB22ACCA38C00E99BE0 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,7 +246,7 @@
 		719B5D562ACB48CE00E99BE0 /* MainTabBar */ = {
 			isa = PBXGroup;
 			children = (
-				719B5D572ACB493B00E99BE0 /* MainTabBarViewController.swift */,
+				719B5DB22ACCA38C00E99BE0 /* MainTabBarViewController.swift */,
 			);
 			path = MainTabBar;
 			sourceTree = "<group>";
@@ -355,11 +355,11 @@
 				719B5D292AC4C58400E99BE0 /* CustomKeyboardToolbar.swift in Sources */,
 				719B5D2B2AC5C66000E99BE0 /* WebViewerController.swift in Sources */,
 				719B5D3A2AC614A600E99BE0 /* AuthHeaderView.swift in Sources */,
+				719B5DB32ACCA38C00E99BE0 /* MainTabBarViewController.swift in Sources */,
 				719B5D382AC607D700E99BE0 /* Constants.swift in Sources */,
 				719B5D5E2ACB4A4300E99BE0 /* BookedTicketsViewController.swift in Sources */,
 				719B5D3D2AC6D71400E99BE0 /* ProfileViewController.swift in Sources */,
 				719B5D552AC9BE9C00E99BE0 /* UserModel.swift in Sources */,
-				719B5D582ACB493B00E99BE0 /* MainTabBarViewController.swift in Sources */,
 				719B5D402AC6DEEE00E99BE0 /* AlertManager.swift in Sources */,
 				719B5CFF2AC4422100E99BE0 /* RegisterViewController.swift in Sources */,
 				719B5D042AC46D3B00E99BE0 /* CustomButton.swift in Sources */,
@@ -516,8 +516,7 @@
 				INFOPLIST_FILE = Ticketock/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -543,8 +542,7 @@
 				INFOPLIST_FILE = Ticketock/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

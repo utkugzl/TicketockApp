@@ -28,9 +28,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     public func checkAuthentication() {
         if Auth.auth().currentUser == nil {
-            goToController(with: LoginViewController())
+            goToController(LoginViewController())
         } else {
-            goToController(with: MainTabBarViewController())
+            goToController(MainTabBarViewController())
         }
     }
     
@@ -42,25 +42,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     
-    private func goToController(with viewController: UIViewController) {
+    private func goToController(_ viewController: UIViewController) {
         DispatchQueue.main.async { [weak self] in
             UIView.animate(withDuration: 0.25) {
                 
                 self?.window?.layer.opacity = 0
                 
             } completion: { [weak self] _ in
-                
-                let nav = UINavigationController(rootViewController: viewController)
-                nav.modalPresentationStyle = .fullScreen
-                self?.window?.rootViewController = nav
+                var newRootViewController: UIViewController?
+                if let tabBarController = viewController as? UITabBarController {
+                    newRootViewController = tabBarController
+                } else {
+                    newRootViewController = UINavigationController(rootViewController: viewController)
+                    (newRootViewController as? UINavigationController)?.modalPresentationStyle = .fullScreen
+                }
+                self?.window?.rootViewController = newRootViewController
                 
                 UIView.animate(withDuration: 0.25) {
                     self?.window?.layer.opacity = 1
                 }
             }
-
         }
     }
+    
 
 }
 

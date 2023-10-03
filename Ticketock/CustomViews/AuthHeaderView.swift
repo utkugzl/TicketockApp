@@ -47,7 +47,8 @@ final class AuthHeaderView: UIView {
 
 }
 
-// MARK: - Configurations
+
+// MARK: - Configure UI
 
 extension AuthHeaderView {
     

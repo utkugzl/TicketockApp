@@ -32,7 +32,7 @@ final class CustomKeyboardToolbar: UIToolbar {
 }
 
 
-// MARK: - Configurations
+// MARK: - Configure UI
 
 extension CustomKeyboardToolbar {
     

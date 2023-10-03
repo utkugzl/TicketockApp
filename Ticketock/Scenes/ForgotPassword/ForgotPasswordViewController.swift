@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ForgotPasswordViewController: UIViewController {
+final class ForgotPasswordViewController: UIViewController {
     
     private let emailField = CustomTextField(authFieldType: .email)
     private let resetPasswordButton = CustomButton(title: "Reset Password", hasBackground: true, fontSize: .big)
@@ -27,7 +27,7 @@ class ForgotPasswordViewController: UIViewController {
 }
 
 
-// MARK: - Configurations
+// MARK: - Configure UI
 
 extension ForgotPasswordViewController {
 

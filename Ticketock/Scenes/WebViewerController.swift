@@ -37,7 +37,7 @@ final class WebViewerController: UIViewController {
 
 }
 
-// MARK: - Configurations
+// MARK: - Configure UI
 
 extension WebViewerController {
     
