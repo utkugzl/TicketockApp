@@ -9,30 +9,55 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
     
-    private let label: UILabel = {
-        let label = UILabel()
-        label.textColor = .label
-        label.textAlignment = .center
-        label.font = .systemFont(ofSize: 24, weight: .semibold)
-        label.text = "Loading..."
-        label.numberOfLines = 2
-        return label
+    private let ProfileTableView: UITableView = {
+        let tableView = UITableView(frame: .zero)
+        return tableView
     }()
+
+    private var sections = [ProfileTableViewCellModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         
-        AuthManager.shared.fetchUser { [weak self] user, error in
-            guard let self = self else { return }
-            if let error = error {
-                AlertManager.showFetchingUserError(on: self, with: error)
-                return
-            }
-            if let user = user {
-                label.text = "\(user.username)\n\(user.email)"
-            }
+//        AuthManager.shared.fetchUser { [weak self] user, error in
+//            guard let self = self else { return }
+//            if let error = error {
+//                AlertManager.showFetchingUserError(on: self, with: error)
+//                return
+//            }
+//            if let user = user {
+//                label.text = "\(user.username)\n\(user.email)"
+//            }
+//        }
+    }
+
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
+
+extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return sections.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileTableViewCell.identifier, for: indexPath) as? ProfileTableViewCell else {
+            return UITableViewCell()
         }
+        
+        cell.setup(with: sections[indexPath.row])
+        return cell
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let model = sections[indexPath.row]
+        model.handler()
     }
 
 }
@@ -41,21 +66,61 @@ final class ProfileViewController: UIViewController {
 // MARK: - Configure UI
 
 extension ProfileViewController {
+    
+    private func configureUI() {
+        view.backgroundColor = .systemBackground
         
-        private func configureUI() {
-            view.backgroundColor = .systemBackground
-            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Log Out", style: .done, target: self, action: #selector(didTapLogOutButton))
+        view.addSubview(ProfileTableView)
+        ProfileTableView.register(UINib(nibName: ProfileTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ProfileTableViewCell.identifier)
+        
+        configureModels()
+        makeProfileTableView()
+        
+        ProfileTableView.delegate = self
+        ProfileTableView.dataSource = self
+        ProfileTableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: view.width, height: 200))
 
-            view.addSubview(label)
-            
-            label.translatesAutoresizingMaskIntoConstraints = false
-            
-            NSLayoutConstraint.activate([
-                label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-                label.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-            ])
-        }
-  
+    }
+    
+    private func makeProfileTableView() {
+        ProfileTableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            ProfileTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            ProfileTableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            ProfileTableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            ProfileTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+        ])
+    }
+    
+    private func configureModels() {
+        
+        sections.append(ProfileTableViewCellModel(symbolImage: UIImage(systemName: "heart.fill")!, title: "Favorite Movies", handler: {
+            DispatchQueue.main.async {
+                print("Favorite Movies Tapped")
+            }
+        }))
+        sections.append(ProfileTableViewCellModel(symbolImage: UIImage(systemName: "creditcard.fill")!, title: "Paymnet Methods", handler: {
+            DispatchQueue.main.async {
+                print("Paymnet Methods Tapped")
+            }
+        }))
+        sections.append(ProfileTableViewCellModel(symbolImage: UIImage(systemName: "lock.fill")!, title: "Account Settings", handler: {
+            DispatchQueue.main.async {
+                print("Account Settings Tapped")
+            }
+        }))
+        sections.append(ProfileTableViewCellModel(symbolImage: UIImage(systemName: "questionmark.circle")!, title: "Help", handler: {
+            DispatchQueue.main.async {
+                print("Help Tapped")
+            }
+        }))
+        sections.append(ProfileTableViewCellModel(symbolImage: UIImage(systemName: "rectangle.portrait.and.arrow.forward")!, title: "Log Out", handler: {
+            DispatchQueue.main.async {
+                self.didTapLogOutButton()
+            }
+        }))
+    }
+
 }
 
 
@@ -63,7 +128,7 @@ extension ProfileViewController {
 
 extension ProfileViewController {
     
-    @objc func didTapLogOutButton() {
+    private func didTapLogOutButton() {
         AuthManager.shared.signOut { [weak self ]error in
             guard let self = self else { return }
             if let error = error {
