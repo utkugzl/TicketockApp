@@ -84,15 +84,25 @@ extension ForgotPasswordViewController {
             return
         }
         
-        AuthManager.shared.forgotPassword(with: email) { [weak self] error in
+//        AuthManager.shared.forgotPassword(with: email) { [weak self] error in
+//            guard let self = self else { return }
+//
+//            if let error = error {
+//                AlertManager.showErrorSendingPasswordReset(on: self, with: error)
+//                return
+//            }
+//
+//            AlertManager.showPasswordResetSent(on: self)
+//        }
+        
+        AuthManager.shared.forgotPassword(with: email) { [weak self] result in
             guard let self = self else { return }
-            
-            if let error = error {
+            switch result {
+            case .success:
+                AlertManager.showPasswordResetSent(on: self)
+            case .failure(let error):
                 AlertManager.showErrorSendingPasswordReset(on: self, with: error)
-                return
             }
-            
-            AlertManager.showPasswordResetSent(on: self)
         }
 
     }

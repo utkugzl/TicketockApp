@@ -23,6 +23,7 @@ struct AppConstants {
         static let onboarding2 = "onboarding2"
         static let onboarding3 = "onboarding3"
         static let autheHeaderViewImage = "authHeader"
+        static let user = "user"
     }
     
     struct Regex {

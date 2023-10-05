@@ -19,17 +19,6 @@ final class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        
-//        AuthManager.shared.fetchUser { [weak self] user, error in
-//            guard let self = self else { return }
-//            if let error = error {
-//                AlertManager.showFetchingUserError(on: self, with: error)
-//                return
-//            }
-//            if let user = user {
-//                label.text = "\(user.username)\n\(user.email)"
-//            }
-//        }
     }
 
 }
@@ -42,7 +31,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         return sections.count
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileTableViewCell.identifier, for: indexPath) as? ProfileTableViewCell else {
@@ -53,6 +41,9 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -73,12 +64,12 @@ extension ProfileViewController {
         view.addSubview(ProfileTableView)
         ProfileTableView.register(UINib(nibName: ProfileTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ProfileTableViewCell.identifier)
         
+        configureHeaderView()
         configureModels()
         makeProfileTableView()
         
         ProfileTableView.delegate = self
         ProfileTableView.dataSource = self
-        ProfileTableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: view.width, height: 200))
 
     }
     
@@ -92,6 +83,10 @@ extension ProfileViewController {
         ])
     }
     
+    private func configureHeaderView() {
+        ProfileTableView.tableHeaderView = ProfileHeaderView(frame: CGRect(x: 0, y: 0, width: self.ProfileTableView.frame.size.width, height: 240))
+    }
+
     private func configureModels() {
         
         sections.append(ProfileTableViewCellModel(symbolImage: UIImage(systemName: "heart.fill")!, title: "Favorite Movies", handler: {
@@ -124,22 +119,20 @@ extension ProfileViewController {
 }
 
 
-// MARK: - Selectors
+// MARK: - Helper Functions
 
 extension ProfileViewController {
     
     private func didTapLogOutButton() {
-        AuthManager.shared.signOut { [weak self ]error in
-            guard let self = self else { return }
-            if let error = error {
+        AuthManager.shared.signOut { result in
+            switch result {
+            case .success():
+                if let scnDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+                    scnDelegate.checkAuthentication()
+                }
+            case.failure(let error):
                 AlertManager.showLogoutErrorAlert(on: self, with: error)
-                return
             }
-            
-            if let scnDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
-                scnDelegate.checkAuthentication()
-            }
-            
         }
     }
 }

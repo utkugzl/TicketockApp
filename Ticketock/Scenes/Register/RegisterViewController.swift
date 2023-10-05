@@ -211,20 +211,15 @@ extension RegisterViewController {
 //            return
 //        }
         
-        AuthManager.shared.registerUser(with: registerUserRequest) { [weak self] wasRegistered, error in
+        AuthManager.shared.registerUser(with: registerUserRequest) { [weak self] result in
             guard let self = self else { return }
-            
-            if let error = error {
-                AlertManager.showRegistrationErrorAlert(on: self, with: error)
-                return
-            }
-            
-            if wasRegistered {
+            switch result {
+            case .success:
                 if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
                     sceneDelegate.checkAuthentication()
                 }
-            } else {
-                AlertManager.showRegistrationErrorAlert(on: self)
+            case .failure(let error):
+                AlertManager.showRegistrationErrorAlert(on: self, with: error)
             }
         }
     }

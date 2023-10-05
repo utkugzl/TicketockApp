@@ -165,17 +165,18 @@ extension LoginViewController {
 //            return
 //        }
         
-        AuthManager.shared.signIn(with: loginUserRequest) { [weak self] error in
+        
+        AuthManager.shared.signIn(with: loginUserRequest) { [weak self] result in
             guard let self = self else { return }
-            if let error = error {
+            switch result {
+            case .success:
+                if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
+                    sceneDelegate.checkAuthentication()
+                } else {
+                    AlertManager.showSignInErrorAlert(on: self)
+                }
+            case .failure(let error):
                 AlertManager.showSignInErrorAlert(on: self, with: error)
-                return
-            }
-            
-            if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
-                sceneDelegate.checkAuthentication()
-            } else {
-                AlertManager.showSignInErrorAlert(on: self)
             }
         }
     }

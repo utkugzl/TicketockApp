@@ -19,36 +19,34 @@ final class AuthManager {
     /// - Parameters:
     ///   - user: The users information (emali,password,username)
     ///   - completion: A completion with two values...
-    ///   Bool: wasRegistered - Determines if the user was registered and saved in the database correctly
-    ///   Error?: An error optianol error if the firebase provides one
-    public func registerUser(with user: RegisterUserModal, completion: @escaping (Bool,Error?) -> Void) {
+    public func registerUser(with user: RegisterUserModal, completion: @escaping (Result<Void, Error>) -> Void) {
         let username = user.username
         let email = user.email
         let password = user.password
-        
+
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if let error = error {
-                completion(false,error)
+                completion(.failure(error))
                 return
             }
-            
+
             guard let resultUser = result?.user else {
-                completion(false,nil)
+                completion(.failure(NSError(domain: "Firebase", code: 1, userInfo: [NSLocalizedDescriptionKey: "User not found"])))
                 return
             }
-            
+
             let db = Firestore.firestore()
-            
+
             db.collection("users").document(resultUser.uid).setData([
                 "username": username,
                 "email": email
             ]) { error in
                 if let error = error {
-                    completion(false,error)
+                    completion(.failure(error))
                     return
                 }
-                
-                completion(true,nil)
+
+                completion(.success(()))
             }
         }
     }
@@ -59,28 +57,25 @@ final class AuthManager {
     ///   - user: The users information (emali,password)
     ///   - completion: A completion with one values...
     ///   ///   Error?: An error optianol error if the firebase provides one
-    public func signIn(with user: LoginUserModal, completion: @escaping (Error?) -> Void) {
+    public func signIn(with user: LoginUserModal, completion: @escaping (Result<Void, Error>) -> Void) {
         Auth.auth().signIn(withEmail: user.email, password: user.password) { result, error in
             if let error = error {
-                completion(error)
-                return
+                completion(.failure(error))
             } else {
-                completion(nil)
+                completion(.success(()))
             }
         }
     }
     
     
-    /// A method to sign out the user
-    /// - Parameters:
-    ///   - completion: A completion with one values...
-    ///   ///   Error?: An error optianol error if the firebase provides one
-    public func signOut(completion: @escaping (Error?) -> Void) {
+    /// A method to sign out the current user
+    /// - Parameter completion:
+    public func signOut(completion: @escaping (Result<Void, Error>) -> Void) {
         do {
             try Auth.auth().signOut()
-            completion(nil)
+            completion(.success(()))
         } catch {
-            completion(error)
+            completion(.failure(error))
         }
     }
     
@@ -90,33 +85,38 @@ final class AuthManager {
     ///   - email: User email
     ///   - completion: A completion with one values...
     ///   ///   Error?: An error optianol error if the firebase provides one
-    public func forgotPassword(with email: String, completion: @escaping (Error?) -> Void) {
+    public func forgotPassword(with email: String, completion: @escaping (Result<Void, Error>) -> Void) {
         Auth.auth().sendPasswordReset(withEmail: email) { error in
             if let error = error {
-                completion(error)
+                completion(.failure(error))
                 return
             }
+            completion(.success(()))
         }
     }
     
-    public func fetchUser(completion: @escaping (UserModel?,Error?) -> Void) {
-        guard let userUID = Auth.auth().currentUser?.uid else { return }
+    
+    public func fetchUser(completion: @escaping (Result<UserModel, Error>) -> Void) {
+        guard let userUID = Auth.auth().currentUser?.uid else {
+            completion(.failure(NSError(domain: "UserNotFound", code: 404, userInfo: nil)))
+            return
+        }
         
         let db = Firestore.firestore()
         
         db.collection("users").document(userUID).getDocument { snapshot, error in
             if let error = error {
-                completion(nil,error)
+                completion(.failure(error))
                 return
             }
             
             guard let snapshot = snapshot else {
-                completion(nil,nil)
+                completion(.failure(NSError(domain: "SnapshotNotFound", code: 404, userInfo: nil)))
                 return
             }
             
             guard let data = snapshot.data() else {
-                completion(nil,nil)
+                completion(.failure(NSError(domain: "DataNotFound", code: 404, userInfo: nil)))
                 return
             }
             
@@ -125,10 +125,8 @@ final class AuthManager {
             
             let user = UserModel(username: username, email: email, userUID: userUID)
             
-            completion(user,nil)
+            completion(.success(user))
         }
-    
-    
-        
     }
+    
 }

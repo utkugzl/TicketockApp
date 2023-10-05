@@ -44,6 +44,7 @@
 		719B5DB72ACDB2D800E99BE0 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5DB52ACDB2D800E99BE0 /* ProfileTableViewCell.swift */; };
 		719B5DB82ACDB2D800E99BE0 /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 719B5DB62ACDB2D800E99BE0 /* ProfileTableViewCell.xib */; };
 		719B5DBA2ACDB85800E99BE0 /* ProfileTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5DB92ACDB85800E99BE0 /* ProfileTableViewCellModel.swift */; };
+		719B5DBC2ACEF5C200E99BE0 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5DBB2ACEF5C200E99BE0 /* ProfileHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		719B5DB52ACDB2D800E99BE0 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		719B5DB62ACDB2D800E99BE0 /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
 		719B5DB92ACDB85800E99BE0 /* ProfileTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCellModel.swift; sourceTree = "<group>"; };
+		719B5DBB2ACEF5C200E99BE0 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				719B5D392AC614A600E99BE0 /* AuthHeaderView.swift */,
+				719B5DBB2ACEF5C200E99BE0 /* ProfileHeaderView.swift */,
 				719B5D002AC467A800E99BE0 /* CustomTextField.swift */,
 				719B5D032AC46D3B00E99BE0 /* CustomButton.swift */,
 				719B5D282AC4C58400E99BE0 /* CustomKeyboardToolbar.swift */,
@@ -381,6 +384,7 @@
 				719B5D3D2AC6D71400E99BE0 /* ProfileViewController.swift in Sources */,
 				719B5D552AC9BE9C00E99BE0 /* UserModel.swift in Sources */,
 				719B5D402AC6DEEE00E99BE0 /* AlertManager.swift in Sources */,
+				719B5DBC2ACEF5C200E99BE0 /* ProfileHeaderView.swift in Sources */,
 				719B5CFF2AC4422100E99BE0 /* RegisterViewController.swift in Sources */,
 				719B5D042AC46D3B00E99BE0 /* CustomButton.swift in Sources */,
 				719B5D2F2AC5D60600E99BE0 /* CustomTermsAndPrivacyTextView.swift in Sources */,
