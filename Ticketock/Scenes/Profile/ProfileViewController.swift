@@ -84,7 +84,7 @@ extension ProfileViewController {
     }
     
     private func configureHeaderView() {
-        ProfileTableView.tableHeaderView = ProfileHeaderView(frame: CGRect(x: 0, y: 0, width: self.ProfileTableView.frame.size.width, height: 240))
+        ProfileTableView.tableHeaderView = ProfileHeaderView(frame: CGRect(x: 0, y: 0, width: ProfileTableView.width, height: 240))
     }
 
     private func configureModels() {

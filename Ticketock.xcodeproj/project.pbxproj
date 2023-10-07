@@ -45,6 +45,8 @@
 		719B5DB82ACDB2D800E99BE0 /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 719B5DB62ACDB2D800E99BE0 /* ProfileTableViewCell.xib */; };
 		719B5DBA2ACDB85800E99BE0 /* ProfileTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5DB92ACDB85800E99BE0 /* ProfileTableViewCellModel.swift */; };
 		719B5DBC2ACEF5C200E99BE0 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5DBB2ACEF5C200E99BE0 /* ProfileHeaderView.swift */; };
+		71CDFF882AD16750004FC807 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CDFF872AD16750004FC807 /* LoginViewModel.swift */; };
+		71CDFF8C2AD1A2F1004FC807 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CDFF8B2AD1A2F1004FC807 /* RegisterViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +86,8 @@
 		719B5DB62ACDB2D800E99BE0 /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
 		719B5DB92ACDB85800E99BE0 /* ProfileTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCellModel.swift; sourceTree = "<group>"; };
 		719B5DBB2ACEF5C200E99BE0 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		71CDFF872AD16750004FC807 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		71CDFF8B2AD1A2F1004FC807 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				719B5CFC2AC4366300E99BE0 /* LoginViewController.swift */,
+				71CDFF872AD16750004FC807 /* LoginViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -214,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				719B5CFE2AC4422100E99BE0 /* RegisterViewController.swift */,
+				71CDFF8B2AD1A2F1004FC807 /* RegisterViewModel.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -377,6 +383,7 @@
 				719B5D292AC4C58400E99BE0 /* CustomKeyboardToolbar.swift in Sources */,
 				719B5D2B2AC5C66000E99BE0 /* WebViewerController.swift in Sources */,
 				719B5D3A2AC614A600E99BE0 /* AuthHeaderView.swift in Sources */,
+				71CDFF882AD16750004FC807 /* LoginViewModel.swift in Sources */,
 				719B5DB32ACCA38C00E99BE0 /* MainTabBarViewController.swift in Sources */,
 				719B5D382AC607D700E99BE0 /* Constants.swift in Sources */,
 				719B5D5E2ACB4A4300E99BE0 /* BookedTicketsViewController.swift in Sources */,
@@ -386,6 +393,7 @@
 				719B5D402AC6DEEE00E99BE0 /* AlertManager.swift in Sources */,
 				719B5DBC2ACEF5C200E99BE0 /* ProfileHeaderView.swift in Sources */,
 				719B5CFF2AC4422100E99BE0 /* RegisterViewController.swift in Sources */,
+				71CDFF8C2AD1A2F1004FC807 /* RegisterViewModel.swift in Sources */,
 				719B5D042AC46D3B00E99BE0 /* CustomButton.swift in Sources */,
 				719B5D2F2AC5D60600E99BE0 /* CustomTermsAndPrivacyTextView.swift in Sources */,
 				719B5D312AC5DAF300E99BE0 /* ForgotPasswordViewController.swift in Sources */,

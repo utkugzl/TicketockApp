@@ -7,6 +7,12 @@
 
 import UIKit
 
+protocol RegisterViewProtocol: AnyObject {
+    func configureToolBar()
+    func configureNavBar()
+    func configureUI()
+}
+
 final class RegisterViewController: UIViewController {
     
     private let headerView = AuthHeaderView(title: "Sign Up", subtitle: "Create your account")
@@ -17,18 +23,55 @@ final class RegisterViewController: UIViewController {
     private let termsTextView = CustomTermsAndPrivacyTextView()
 
     private let registerButton = CustomButton(title: "Sign Up", hasBackground: true, fontSize: .big)
+    
+    private lazy var viewModal = RegisterViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
-        configureToolBar()
+        viewModal.view = self
+        viewModal.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = false
+        viewModal.viewWillAppear()
     }
 
+}
+
+extension RegisterViewController: RegisterViewProtocol {
+    
+    func configureUI() {
+        view.backgroundColor = .systemBackground
+        
+        view.addSubview(headerView)
+        view.addSubview(usernameField)
+        view.addSubview(emailField)
+        view.addSubview(passwordField)
+        view.addSubview(registerButton)
+        view.addSubview(termsTextView)
+        
+        makeHeaderView()
+        makeUsernameField()
+        makeEmailField()
+        makePasswordField()
+        makeRegisterButton()
+        makeTermsTextView()
+          
+        [usernameField, emailField, passwordField].forEach { $0.delegate = self }
+
+        termsTextView.delegate = self
+    }
+    
+    func configureNavBar() {
+        navigationController?.navigationBar.isHidden = false
+    }
+    
+    func configureToolBar() {
+        let keyboardToolbar = CustomKeyboardToolbar(textFields: [usernameField,emailField, passwordField])
+
+        [usernameField, emailField, passwordField].forEach { $0.inputAccessoryView = keyboardToolbar }
+    }
 }
 
 
@@ -75,48 +118,30 @@ extension RegisterViewController: UITextFieldDelegate {
             emailField.becomeFirstResponder()
         } else if textField == emailField {
             passwordField.becomeFirstResponder()
-        } // Diğer text field'larınız için aynı şekilde devam edin.
+        }
         
         return true
     }
 }
 
 
-// MARK: - Configure UI
+// MARK: - Selectors
 
 extension RegisterViewController {
     
-    private func configureUI() {
-        view.backgroundColor = .systemBackground
+    @objc private func didTapRegisterButton() {
+        viewModal.didTapRegisterButton(username: usernameField.text ?? "",
+                                       email: emailField.text ?? "",
+                                       password: passwordField.text ?? "")
         
-        view.addSubview(headerView)
-        view.addSubview(usernameField)
-        view.addSubview(emailField)
-        view.addSubview(passwordField)
-        view.addSubview(registerButton)
-        view.addSubview(termsTextView)
-        
-        makeHeaderView()
-        makeUsernameField()
-        makeEmailField()
-        makePasswordField()
-        makeRegisterButton()
-        makeTermsTextView()
-          
-        [usernameField, emailField, passwordField].forEach { $0.delegate = self }
-
-        termsTextView.delegate = self
-        
-        registerButton.addTarget(self, action: #selector(didTapRegisterButton), for: .touchUpInside)
     }
-    
-    
-    private func configureToolBar() {
-        let keyboardToolbar = CustomKeyboardToolbar(textFields: [usernameField,emailField, passwordField])
 
-        [usernameField, emailField, passwordField].forEach { $0.inputAccessoryView = keyboardToolbar }
-    }
-    
+}
+
+
+// MARK: - Configure UI
+
+extension RegisterViewController {
     
     private func makeHeaderView() {
         headerView.translatesAutoresizingMaskIntoConstraints = false
@@ -162,6 +187,7 @@ extension RegisterViewController {
             registerButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             registerButton.heightAnchor.constraint(equalToConstant: 52),
         ])
+        registerButton.addTarget(self, action: #selector(didTapRegisterButton), for: .touchUpInside)
     }
     private func makeTermsTextView() {
         termsTextView.translatesAutoresizingMaskIntoConstraints = false
@@ -175,54 +201,4 @@ extension RegisterViewController {
  
 }
 
-
-// MARK: - Selectors
-
-extension RegisterViewController {
-    
-    @objc private func didTapRegisterButton() {
-//        guard let username = usernameField.text, !username.isEmpty,
-//              let email = emailField.text, !email.isEmpty,
-//              let password = passwordField.text, !password.isEmpty else {
-//            //presentAlertOnMainThread(title: "Empty Fields", message: "Please enter your email and password", buttonTitle: "Ok")
-//            AlertManager.showInvalidUsernameAlert(on: self)
-//            return
-//        }
-        
-        let registerUserRequest = RegisterUserModal(
-            username: usernameField.text ?? "",
-            email: emailField.text ?? "",
-            password: passwordField.text ?? ""
-        )
-        
-        // Username check
-        if !ValidationManager.isValidUsername(for: registerUserRequest.username) {
-            AlertManager.showInvalidUsernameAlert(on: self)
-            return
-        }
-        // Email check
-        if !ValidationManager.isValidEmail(for: registerUserRequest.email) {
-            AlertManager.showInvalidEmailAlert(on: self)
-            return
-        }
-        // Password check
-//        if !ValidateManager.isValidPassword(for: registerUserRequest.password) {
-//            AlertManager.showInvalidPasswordAlert(on: self)
-//            return
-//        }
-        
-        AuthManager.shared.registerUser(with: registerUserRequest) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success:
-                if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
-                    sceneDelegate.checkAuthentication()
-                }
-            case .failure(let error):
-                AlertManager.showRegistrationErrorAlert(on: self, with: error)
-            }
-        }
-    }
-
-}
 

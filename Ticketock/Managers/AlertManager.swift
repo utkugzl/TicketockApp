@@ -40,7 +40,6 @@ extension AlertManager {
 
 // MARK: - Registration Alerts
 
-
 extension AlertManager {
     
     public static func showRegistrationErrorAlert(on vc: UIViewController) {
@@ -51,7 +50,6 @@ extension AlertManager {
         showBasicAlert(on: vc, title: "Unknown Registration Error", message: "\(error.localizedDescription)")
     }
 }
-
 
 // MARK: - Log In Alerts
 
@@ -66,7 +64,6 @@ extension AlertManager {
     }
 }
 
-
 // MARK: - Log Out Alerts
 
 extension AlertManager {
@@ -75,7 +72,6 @@ extension AlertManager {
         showBasicAlert(on: vc, title: "Log Out Error", message: "\(error.localizedDescription)")
     }
 }
-
 
 // MARK: - Forgot Password Alerts
 

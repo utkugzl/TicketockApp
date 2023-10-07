@@ -14,7 +14,6 @@ final class AuthManager {
     
     private init() {}
     
-    
     /// A method to register the user
     /// - Parameters:
     ///   - user: The users information (emali,password,username)
@@ -56,7 +55,7 @@ final class AuthManager {
     /// - Parameters:
     ///   - user: The users information (emali,password)
     ///   - completion: A completion with one values...
-    ///   ///   Error?: An error optianol error if the firebase provides one
+    ///   ///   Error: An error if the firebase provides one
     public func signIn(with user: LoginUserModal, completion: @escaping (Result<Void, Error>) -> Void) {
         Auth.auth().signIn(withEmail: user.email, password: user.password) { result, error in
             if let error = error {
@@ -84,7 +83,7 @@ final class AuthManager {
     /// - Parameters:
     ///   - email: User email
     ///   - completion: A completion with one values...
-    ///   ///   Error?: An error optianol error if the firebase provides one
+    ///   ///   Error?: An error if the firebase provides one
     public func forgotPassword(with email: String, completion: @escaping (Result<Void, Error>) -> Void) {
         Auth.auth().sendPasswordReset(withEmail: email) { error in
             if let error = error {

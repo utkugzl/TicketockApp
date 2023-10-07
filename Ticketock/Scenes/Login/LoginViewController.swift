@@ -7,29 +7,69 @@
 
 import UIKit
 
+protocol LoginViewProtocol: AnyObject {
+    func configureToolBar()
+    func configureNavBar()
+    func configureUI()
+}
+
 final class LoginViewController: UIViewController {
     
     private let emailField = CustomTextField(authFieldType: .email)
     private let passwordField = CustomTextField(authFieldType: .password)
-    
     private let loginButton = CustomButton(title: "Sign In", hasBackground: true, fontSize: .big)
     private let createAccountButton = CustomButton(title: "New User? Create an Account", fontSize: .med)
     private let forgotPasswordButton = CustomButton(title: "Forgot Password?", fontSize: .small)
-    
     private let headerView = AuthHeaderView(title: "Sign In", subtitle: "Sign In to your account")
+    
+    private lazy var viewModal = LoginViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
-        configureToolBar()
+        viewModal.view = self
+        viewModal.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = true
+        viewModal.viewWillAppear()
     }
     
 }
+
+extension LoginViewController: LoginViewProtocol {
+    func configureToolBar() {
+        let keyboardToolbar = CustomKeyboardToolbar(textFields: [emailField, passwordField])
+        
+        [emailField, passwordField].forEach { $0.inputAccessoryView = keyboardToolbar }
+    }
+    
+    func configureNavBar() {
+        navigationController?.navigationBar.isHidden = false
+    }
+    
+    func configureUI() {
+       view.backgroundColor = .systemBackground
+       
+       view.addSubview(emailField)
+       view.addSubview(passwordField)
+       view.addSubview(loginButton)
+       view.addSubview(createAccountButton)
+       view.addSubview(headerView)
+       view.addSubview(forgotPasswordButton)
+       
+       makeHeaderView()
+       makeEmailField()
+       makePasswordField()
+       makeLoginButton()
+       makeCreateAccountButton()
+       makeForgotPasswordButton()
+       
+       [emailField, passwordField].forEach { $0.delegate = self }
+       
+   }
+}
+
 
 // MARK: - UITextFieldDelegate
 
@@ -44,41 +84,31 @@ extension LoginViewController: UITextFieldDelegate {
 }
 
 
-// MARK: - Configure UI
+// MARK: - Selectors
 
 extension LoginViewController {
     
-    private func configureUI() {
-        view.backgroundColor = .systemBackground
-        
-        view.addSubview(emailField)
-        view.addSubview(passwordField)
-        view.addSubview(loginButton)
-        view.addSubview(createAccountButton)
-        view.addSubview(headerView)
-        view.addSubview(forgotPasswordButton)
-        
-        makeHeaderView()
-        makeEmailField()
-        makePasswordField()
-        makeLoginButton()
-        makeCreateAccountButton()
-        makeForgotPasswordButton()
-        
-        [emailField, passwordField].forEach { $0.delegate = self }
-        
-        loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
-        createAccountButton.addTarget(self, action: #selector(didTabCreateAccountButton), for: .touchUpInside)
-        forgotPasswordButton.addTarget(self, action: #selector(didTabForgotPasswordButton), for: .touchUpInside)
+    @objc private func didTapLoginButton() {
+        viewModal.didTapLoginButton(email: emailField.text ?? "", password: passwordField.text ?? "")
     }
     
-    
-    private func configureToolBar() {
-        let keyboardToolbar = CustomKeyboardToolbar(textFields: [emailField, passwordField])
-        
-        [emailField, passwordField].forEach { $0.inputAccessoryView = keyboardToolbar }
+    @objc private func didTabCreateAccountButton() {
+        let vc = RegisterViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
+    @objc private func didTabForgotPasswordButton() {
+        let vc = ForgotPasswordViewController()
+        vc.title = "Forgot Password"
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+}
+
+
+// MARK: - Configure UI
+
+extension LoginViewController {
     
     private func makeHeaderView() {
         headerView.translatesAutoresizingMaskIntoConstraints = false
@@ -92,7 +122,7 @@ extension LoginViewController {
     private func makeEmailField() {
         emailField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            emailField.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 100),
+            emailField.topAnchor.constraint(equalTo: headerView.bottomAnchor, constant: 140),
             emailField.centerXAnchor.constraint(equalTo: headerView.centerXAnchor),
             emailField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             emailField.heightAnchor.constraint(equalToConstant: 52),
@@ -115,6 +145,7 @@ extension LoginViewController {
             loginButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             loginButton.heightAnchor.constraint(equalToConstant: 52),
         ])
+        loginButton.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
     }
     private func makeCreateAccountButton() {
         createAccountButton.translatesAutoresizingMaskIntoConstraints = false
@@ -124,6 +155,7 @@ extension LoginViewController {
             createAccountButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             createAccountButton.heightAnchor.constraint(equalToConstant: 52),
         ])
+        createAccountButton.addTarget(self, action: #selector(didTabCreateAccountButton), for: .touchUpInside)
     }
     private func makeForgotPasswordButton() {
         forgotPasswordButton.translatesAutoresizingMaskIntoConstraints = false
@@ -133,66 +165,10 @@ extension LoginViewController {
             forgotPasswordButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             forgotPasswordButton.heightAnchor.constraint(equalToConstant: 52)
         ])
+        forgotPasswordButton.addTarget(self, action: #selector(didTabForgotPasswordButton), for: .touchUpInside)
     }
 
 }
 
-
-// MARK: - Selectors
-
-extension LoginViewController {
-    
-    @objc private func didTapLoginButton() {
-//        guard let email = emailField.text, !email.isEmpty,
-//              let password = passwordField.text, !password.isEmpty else {
-//            //presentAlertOnMainThread(title: "Empty Fields", message: "Please enter your email and password", buttonTitle: "Ok")
-//            return
-//        }
-        
-        let loginUserRequest = LoginUserModal(
-            email: emailField.text ?? "",
-            password: passwordField.text ?? ""
-        )
-        
-        // Email check
-        if !ValidationManager.isValidEmail(for: loginUserRequest.email) {
-            AlertManager.showInvalidEmailAlert(on: self)
-            return
-        }
-        // Password check
-//        if !ValidateManager.isValidPassword(for: registerUserRequest.password) {
-//            AlertManager.showInvalidPasswordAlert(on: self)
-//            return
-//        }
-        
-        
-        AuthManager.shared.signIn(with: loginUserRequest) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success:
-                if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
-                    sceneDelegate.checkAuthentication()
-                } else {
-                    AlertManager.showSignInErrorAlert(on: self)
-                }
-            case .failure(let error):
-                AlertManager.showSignInErrorAlert(on: self, with: error)
-            }
-        }
-    }
-    
-    @objc private func didTabCreateAccountButton() {
-        let vc = RegisterViewController()
-        navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    @objc private func didTabForgotPasswordButton() {
-        let vc = ForgotPasswordViewController()
-        vc.title = "Forgot Password"
-        navigationController?.pushViewController(vc, animated: true)
-    
-    }
-    
-}
 
 
