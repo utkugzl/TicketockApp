@@ -16,6 +16,11 @@ struct AppConstants {
     
     struct Symbols {
         static let closeKeyboardSymbol = "keyboard.chevron.compact.down"
+        static let profileFavoriteMoviesSymbol = "heart.fill"
+        static let profilePaymnetMethodsSymbol = "creditcard.fill"
+        static let profileAccountSettingsSymbol = "lock.fill"
+        static let profileHelpSymbol = "questionmark.circle"
+        static let profileLogOutSymbol = "rectangle.portrait.and.arrow.forward"
     }
     
     struct Images {

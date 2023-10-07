@@ -36,6 +36,7 @@ extension LoginViewModel: LoginViewModelProtocol {
     
     func didTapLoginButton(email: String, password: String) {
         guard let self = self.view as? LoginViewController else { return }
+        
         let loginUserRequest = LoginUserModal(
             email: email ,
             password: password
@@ -64,7 +65,6 @@ extension LoginViewModel: LoginViewModelProtocol {
             case .failure(let error):
                 AlertManager.showSignInErrorAlert(on: self, with: error)
             }
-            
         }
     
     }

@@ -16,12 +16,10 @@ protocol RegisterViewProtocol: AnyObject {
 final class RegisterViewController: UIViewController {
     
     private let headerView = AuthHeaderView(title: "Sign Up", subtitle: "Create your account")
-    
     private let usernameField = CustomTextField(authFieldType: .username)
     private let emailField = CustomTextField(authFieldType: .email)
     private let passwordField = CustomTextField(authFieldType: .password)
     private let termsTextView = CustomTermsAndPrivacyTextView()
-
     private let registerButton = CustomButton(title: "Sign Up", hasBackground: true, fontSize: .big)
     
     private lazy var viewModal = RegisterViewModel()
@@ -80,31 +78,13 @@ extension RegisterViewController: RegisterViewProtocol {
 extension RegisterViewController: UITextViewDelegate {
     
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange) -> Bool {
-        
-        guard let identifier = URL.scheme else { return false }
-        
-        switch identifier {
-        case "terms":
-            showWebViewerController(with: "https://policies.google.com/terms?hl=en")
-            return false
-        case "privacy":
-            showWebViewerController(with: "https://policies.google.com/privacy?hl=en")
-            return false
-        default:
-            return false
-        }
+        viewModal.shouldInteractWith(url: URL)
     }
     
     func textViewDidChangeSelection(_ textView: UITextView) {
         textView.delegate = nil
         textView.selectedTextRange = nil
         textView.delegate = self
-    }
-    
-    private func showWebViewerController(with urlString: String) {
-        let vc = WebViewerController(with: urlString)
-        let nav = UINavigationController(rootViewController: vc)
-        present(nav, animated: true)
     }
     
 }

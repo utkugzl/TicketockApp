@@ -7,31 +7,36 @@
 
 import UIKit
 
+protocol ForgotPasswordViewProtocol: AnyObject {
+    func configureUI()
+    func configureToolBar()
+    func configureNavBar()
+}
+
 final class ForgotPasswordViewController: UIViewController {
     
     private let emailField = CustomTextField(authFieldType: .email)
     private let resetPasswordButton = CustomButton(title: "Reset Password", hasBackground: true, fontSize: .big)
     
+    private lazy var viewModal = ForgotPasswordViewModel()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
-        configureToolBar()
+        viewModal.view = self
+        viewModal.viewDidLoad()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = false
+        viewModal.viewWillAppear()
     }
 
 }
 
-
-// MARK: - Configure UI
-
-extension ForgotPasswordViewController {
-
-    private func configureUI() {
+extension ForgotPasswordViewController: ForgotPasswordViewProtocol {
+    
+    func configureUI() {
         view.backgroundColor = .systemBackground
 
         view.addSubview(emailField)
@@ -40,17 +45,35 @@ extension ForgotPasswordViewController {
         makeEmailField()
         makeResetPasswordButton()
         
-        resetPasswordButton.addTarget(self, action: #selector(didTapResetPasswordButton), for: .touchUpInside)
     }
 
-
-    private func configureToolBar() {
+    func configureToolBar() {
         let keyboardToolbar = CustomKeyboardToolbar(textFields: [emailField])
 
         emailField.inputAccessoryView = keyboardToolbar
     }
     
+    func configureNavBar() {
+        navigationController?.navigationBar.isHidden = false
+    }
+}
+
+
+// MARK: - Selectors
+
+extension ForgotPasswordViewController {
     
+    @objc func didTapResetPasswordButton() {
+        viewModal.didTapResetPasswordButton(email: emailField.text ?? "")
+    }
+    
+}
+
+
+// MARK: - Configure UI
+
+extension ForgotPasswordViewController {
+  
     private func makeEmailField() {
         emailField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -68,42 +91,7 @@ extension ForgotPasswordViewController {
             resetPasswordButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             resetPasswordButton.heightAnchor.constraint(equalToConstant: 52),
         ])
+        resetPasswordButton.addTarget(self, action: #selector(didTapResetPasswordButton), for: .touchUpInside)
     }
 }
 
-
-// MARK: - Selectors
-
-extension ForgotPasswordViewController {
-    
-    @objc func didTapResetPasswordButton() {
-        let email = emailField.text ?? ""
-        
-        if !ValidationManager.isValidEmail(for: email) {
-            AlertManager.showInvalidEmailAlert(on: self)
-            return
-        }
-        
-//        AuthManager.shared.forgotPassword(with: email) { [weak self] error in
-//            guard let self = self else { return }
-//
-//            if let error = error {
-//                AlertManager.showErrorSendingPasswordReset(on: self, with: error)
-//                return
-//            }
-//
-//            AlertManager.showPasswordResetSent(on: self)
-//        }
-        
-        AuthManager.shared.forgotPassword(with: email) { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .success:
-                AlertManager.showPasswordResetSent(on: self)
-            case .failure(let error):
-                AlertManager.showErrorSendingPasswordReset(on: self, with: error)
-            }
-        }
-
-    }
-}

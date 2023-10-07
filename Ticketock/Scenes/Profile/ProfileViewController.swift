@@ -7,20 +7,53 @@
 
 import UIKit
 
+protocol ProfileViewProtocol: AnyObject {
+    func configureUI()
+    func configureHeaderView()
+}
+
+
 final class ProfileViewController: UIViewController {
     
     private let ProfileTableView: UITableView = {
         let tableView = UITableView(frame: .zero)
         return tableView
     }()
-
-    private var sections = [ProfileTableViewCellModel]()
-
+  
+    private lazy var viewModal = ProfileViewModal()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
+        viewModal.view = self
+        viewModal.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModal.viewWillAppear()
     }
 
+}
+
+extension ProfileViewController: ProfileViewProtocol {
+    
+    func configureUI() {
+        view.backgroundColor = .systemBackground
+        
+        view.addSubview(ProfileTableView)
+        ProfileTableView.register(UINib(nibName: ProfileTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ProfileTableViewCell.identifier)
+
+        makeProfileTableView()
+        
+        ProfileTableView.delegate = self
+        ProfileTableView.dataSource = self
+
+    }
+    
+    func configureHeaderView() {
+        ProfileTableView.tableHeaderView = ProfileHeaderView(frame: CGRect(x: 0, y: 0, width: ProfileTableView.width, height: 240))
+    }
+    
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -28,17 +61,11 @@ final class ProfileViewController: UIViewController {
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections.count
+        return viewModal.numberOfRowsInSection()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ProfileTableViewCell.identifier, for: indexPath) as? ProfileTableViewCell else {
-            return UITableViewCell()
-        }
-        
-        cell.setup(with: sections[indexPath.row])
-        return cell
+        viewModal.cellForRowAt(tableView, indexPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -46,9 +73,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let model = sections[indexPath.row]
-        model.handler()
+        viewModal.didSelectRowAt(tableView, indexPath: indexPath)
     }
 
 }
@@ -57,21 +82,6 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - Configure UI
 
 extension ProfileViewController {
-    
-    private func configureUI() {
-        view.backgroundColor = .systemBackground
-        
-        view.addSubview(ProfileTableView)
-        ProfileTableView.register(UINib(nibName: ProfileTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: ProfileTableViewCell.identifier)
-        
-        configureHeaderView()
-        configureModels()
-        makeProfileTableView()
-        
-        ProfileTableView.delegate = self
-        ProfileTableView.dataSource = self
-
-    }
     
     private func makeProfileTableView() {
         ProfileTableView.translatesAutoresizingMaskIntoConstraints = false
@@ -82,40 +92,6 @@ extension ProfileViewController {
             ProfileTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
     }
-    
-    private func configureHeaderView() {
-        ProfileTableView.tableHeaderView = ProfileHeaderView(frame: CGRect(x: 0, y: 0, width: ProfileTableView.width, height: 240))
-    }
-
-    private func configureModels() {
-        
-        sections.append(ProfileTableViewCellModel(symbolImage: UIImage(systemName: "heart.fill")!, title: "Favorite Movies", handler: {
-            DispatchQueue.main.async {
-                print("Favorite Movies Tapped")
-            }
-        }))
-        sections.append(ProfileTableViewCellModel(symbolImage: UIImage(systemName: "creditcard.fill")!, title: "Paymnet Methods", handler: {
-            DispatchQueue.main.async {
-                print("Paymnet Methods Tapped")
-            }
-        }))
-        sections.append(ProfileTableViewCellModel(symbolImage: UIImage(systemName: "lock.fill")!, title: "Account Settings", handler: {
-            DispatchQueue.main.async {
-                print("Account Settings Tapped")
-            }
-        }))
-        sections.append(ProfileTableViewCellModel(symbolImage: UIImage(systemName: "questionmark.circle")!, title: "Help", handler: {
-            DispatchQueue.main.async {
-                print("Help Tapped")
-            }
-        }))
-        sections.append(ProfileTableViewCellModel(symbolImage: UIImage(systemName: "rectangle.portrait.and.arrow.forward")!, title: "Log Out", handler: {
-            DispatchQueue.main.async {
-                self.didTapLogOutButton()
-            }
-        }))
-    }
-
 }
 
 
@@ -124,16 +100,7 @@ extension ProfileViewController {
 extension ProfileViewController {
     
     private func didTapLogOutButton() {
-        AuthManager.shared.signOut { result in
-            switch result {
-            case .success():
-                if let scnDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
-                    scnDelegate.checkAuthentication()
-                }
-            case.failure(let error):
-                AlertManager.showLogoutErrorAlert(on: self, with: error)
-            }
-        }
+        viewModal.didTapLogoutButton()
     }
 }
 

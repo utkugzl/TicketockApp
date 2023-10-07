@@ -6,21 +6,33 @@
 //
 
 import Foundation
+import UIKit
 
 
 protocol RegisterViewModelProtocol {
     func viewDidLoad()
     func viewWillAppear()
     func didTapRegisterButton(username: String, email: String, password: String)
-
+    func shouldInteractWith(url: URL) -> Bool
 }
 
 final class RegisterViewModel {
     weak var view :RegisterViewProtocol?
+    
+    
+    private func showWebViewerController(with urlString: String) {
+        guard let presentingViewController = view as? UIViewController else {
+            return
+        }
+        
+        let vc = WebViewerController(with: urlString)
+        let nav = UINavigationController(rootViewController: vc)
+        presentingViewController.present(nav, animated: true)
+    }
 }
 
 extension RegisterViewModel: RegisterViewModelProtocol {
-    
+ 
     func viewDidLoad() {
         view?.configureUI()
         view?.configureToolBar()
@@ -67,6 +79,21 @@ extension RegisterViewModel: RegisterViewModelProtocol {
             }
         }
 
+    }
+    
+    func shouldInteractWith(url: URL) -> Bool {
+        guard let identifier = url.scheme else { return false }
+        
+        switch identifier {
+        case "terms":
+            showWebViewerController(with: "https://policies.google.com/terms?hl=en")
+            return false
+        case "privacy":
+            showWebViewerController(with: "https://policies.google.com/privacy?hl=en")
+            return false
+        default:
+            return false
+        }
     }
  
 }
