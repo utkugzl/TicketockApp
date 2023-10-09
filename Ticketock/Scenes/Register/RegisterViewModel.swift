@@ -43,7 +43,7 @@ extension RegisterViewModel: RegisterViewModelProtocol {
     }
     
     func didTapRegisterButton(username: String, email: String, password: String) {
-        guard let self = self.view as? RegisterViewController else { return }
+        //guard let self = self.view as? RegisterViewController else { return }
         
         let registerUserRequest = RegisterUserModal(
             username: username,
@@ -69,13 +69,17 @@ extension RegisterViewModel: RegisterViewModelProtocol {
 //        }
         
         AuthManager.shared.registerUser(with: registerUserRequest) { result in
+            
             switch result {
             case .success:
+                break
+                /*
                 if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
                     sceneDelegate.checkAuthentication()
                 }
+                 */
             case .failure(let error):
-                AlertManager.showRegistrationErrorAlert(on: self, with: error)
+                AlertManager.showRegistrationErrorAlert(on: UIApplication.topViewController() ?? UIViewController(), with: error)
             }
         }
 

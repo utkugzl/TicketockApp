@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7175E9F02AD475B000418C7C /* ProfileOptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7175E9EE2AD475AF00418C7C /* ProfileOptionsTableViewCell.swift */; };
+		7175E9F12AD475B000418C7C /* ProfileOptionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7175E9EF2AD475B000418C7C /* ProfileOptionsTableViewCell.xib */; };
+		7175E9F42AD4781800418C7C /* ProfileUserInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7175E9F22AD4781800418C7C /* ProfileUserInfoTableViewCell.swift */; };
+		7175E9F52AD4781800418C7C /* ProfileUserInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7175E9F32AD4781800418C7C /* ProfileUserInfoTableViewCell.xib */; };
+		717E319F2AD47AE7004ECCE0 /* ProfileUserImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717E319D2AD47AE7004ECCE0 /* ProfileUserImageTableViewCell.swift */; };
+		717E31A02AD47AE7004ECCE0 /* ProfileUserImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 717E319E2AD47AE7004ECCE0 /* ProfileUserImageTableViewCell.xib */; };
 		719B5CDB2AC3298F00E99BE0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5CDA2AC3298F00E99BE0 /* AppDelegate.swift */; };
 		719B5CDD2AC3298F00E99BE0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5CDC2AC3298F00E99BE0 /* SceneDelegate.swift */; };
 		719B5CDF2AC3298F00E99BE0 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5CDE2AC3298F00E99BE0 /* OnboardingViewController.swift */; };
@@ -41,17 +47,23 @@
 		719B5D5C2ACB4A1D00E99BE0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D5B2ACB4A1D00E99BE0 /* HomeViewController.swift */; };
 		719B5D5E2ACB4A4300E99BE0 /* BookedTicketsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5D5D2ACB4A4300E99BE0 /* BookedTicketsViewController.swift */; };
 		719B5DB32ACCA38C00E99BE0 /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5DB22ACCA38C00E99BE0 /* MainTabBarViewController.swift */; };
-		719B5DB72ACDB2D800E99BE0 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5DB52ACDB2D800E99BE0 /* ProfileTableViewCell.swift */; };
-		719B5DB82ACDB2D800E99BE0 /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 719B5DB62ACDB2D800E99BE0 /* ProfileTableViewCell.xib */; };
-		719B5DBA2ACDB85800E99BE0 /* ProfileTableViewCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5DB92ACDB85800E99BE0 /* ProfileTableViewCellModel.swift */; };
 		719B5DBC2ACEF5C200E99BE0 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 719B5DBB2ACEF5C200E99BE0 /* ProfileHeaderView.swift */; };
 		71CDFF882AD16750004FC807 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CDFF872AD16750004FC807 /* LoginViewModel.swift */; };
 		71CDFF8C2AD1A2F1004FC807 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CDFF8B2AD1A2F1004FC807 /* RegisterViewModel.swift */; };
 		71CDFF9A2AD1CE4D004FC807 /* ForgotPasswordViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CDFF992AD1CE4D004FC807 /* ForgotPasswordViewModal.swift */; };
 		71CDFF9C2AD1D2A1004FC807 /* ProfileViewModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CDFF9B2AD1D2A1004FC807 /* ProfileViewModal.swift */; };
+		71CDFFD22AD31135004FC807 /* LoginViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CDFFD12AD31135004FC807 /* LoginViewModelProtocol.swift */; };
+		71CDFFD42AD3142B004FC807 /* ProfileViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CDFFD32AD3142B004FC807 /* ProfileViewModelProtocol.swift */; };
+		71CDFFD62AD319D1004FC807 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CDFFD52AD319D1004FC807 /* UIApplication+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7175E9EE2AD475AF00418C7C /* ProfileOptionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileOptionsTableViewCell.swift; sourceTree = "<group>"; };
+		7175E9EF2AD475B000418C7C /* ProfileOptionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileOptionsTableViewCell.xib; sourceTree = "<group>"; };
+		7175E9F22AD4781800418C7C /* ProfileUserInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUserInfoTableViewCell.swift; sourceTree = "<group>"; };
+		7175E9F32AD4781800418C7C /* ProfileUserInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileUserInfoTableViewCell.xib; sourceTree = "<group>"; };
+		717E319D2AD47AE7004ECCE0 /* ProfileUserImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUserImageTableViewCell.swift; sourceTree = "<group>"; };
+		717E319E2AD47AE7004ECCE0 /* ProfileUserImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileUserImageTableViewCell.xib; sourceTree = "<group>"; };
 		719B5CD72AC3298F00E99BE0 /* Ticketock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ticketock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		719B5CDA2AC3298F00E99BE0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		719B5CDC2AC3298F00E99BE0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -84,14 +96,14 @@
 		719B5D5B2ACB4A1D00E99BE0 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		719B5D5D2ACB4A4300E99BE0 /* BookedTicketsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookedTicketsViewController.swift; sourceTree = "<group>"; };
 		719B5DB22ACCA38C00E99BE0 /* MainTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
-		719B5DB52ACDB2D800E99BE0 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
-		719B5DB62ACDB2D800E99BE0 /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
-		719B5DB92ACDB85800E99BE0 /* ProfileTableViewCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCellModel.swift; sourceTree = "<group>"; };
 		719B5DBB2ACEF5C200E99BE0 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		71CDFF872AD16750004FC807 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		71CDFF8B2AD1A2F1004FC807 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		71CDFF992AD1CE4D004FC807 /* ForgotPasswordViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModal.swift; sourceTree = "<group>"; };
 		71CDFF9B2AD1D2A1004FC807 /* ProfileViewModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModal.swift; sourceTree = "<group>"; };
+		71CDFFD12AD31135004FC807 /* LoginViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelProtocol.swift; sourceTree = "<group>"; };
+		71CDFFD32AD3142B004FC807 /* ProfileViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelProtocol.swift; sourceTree = "<group>"; };
+		71CDFFD52AD319D1004FC807 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				719B5CF42AC32CE300E99BE0 /* UIView+Extension.swift */,
+				71CDFFD52AD319D1004FC807 /* UIApplication+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -186,7 +199,6 @@
 				719B5D4E2AC876F200E99BE0 /* RegisterUserModal.swift */,
 				719B5D502AC8808400E99BE0 /* LoginUserModal.swift */,
 				719B5D542AC9BE9C00E99BE0 /* UserModel.swift */,
-				719B5DB92ACDB85800E99BE0 /* ProfileTableViewCellModel.swift */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -215,6 +227,7 @@
 			children = (
 				719B5CFC2AC4366300E99BE0 /* LoginViewController.swift */,
 				71CDFF872AD16750004FC807 /* LoginViewModel.swift */,
+				71CDFFD12AD31135004FC807 /* LoginViewModelProtocol.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -251,6 +264,7 @@
 			children = (
 				719B5D3C2AC6D71400E99BE0 /* ProfileViewController.swift */,
 				71CDFF9B2AD1D2A1004FC807 /* ProfileViewModal.swift */,
+				71CDFFD32AD3142B004FC807 /* ProfileViewModelProtocol.swift */,
 				719B5DB42ACDB28600E99BE0 /* CustomCells */,
 			);
 			path = Profile;
@@ -293,8 +307,12 @@
 		719B5DB42ACDB28600E99BE0 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
-				719B5DB52ACDB2D800E99BE0 /* ProfileTableViewCell.swift */,
-				719B5DB62ACDB2D800E99BE0 /* ProfileTableViewCell.xib */,
+				717E319D2AD47AE7004ECCE0 /* ProfileUserImageTableViewCell.swift */,
+				717E319E2AD47AE7004ECCE0 /* ProfileUserImageTableViewCell.xib */,
+				7175E9F22AD4781800418C7C /* ProfileUserInfoTableViewCell.swift */,
+				7175E9F32AD4781800418C7C /* ProfileUserInfoTableViewCell.xib */,
+				7175E9EE2AD475AF00418C7C /* ProfileOptionsTableViewCell.swift */,
+				7175E9EF2AD475B000418C7C /* ProfileOptionsTableViewCell.xib */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -367,10 +385,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				719B5CE72AC3299000E99BE0 /* LaunchScreen.storyboard in Resources */,
+				717E31A02AD47AE7004ECCE0 /* ProfileUserImageTableViewCell.xib in Resources */,
 				719B5D422AC8702000E99BE0 /* GoogleService-Info.plist in Resources */,
 				719B5CE42AC3299000E99BE0 /* Assets.xcassets in Resources */,
+				7175E9F12AD475B000418C7C /* ProfileOptionsTableViewCell.xib in Resources */,
+				7175E9F52AD4781800418C7C /* ProfileUserInfoTableViewCell.xib in Resources */,
 				719B5CFB2AC3476100E99BE0 /* OnboardingCollectionViewCell.xib in Resources */,
-				719B5DB82ACDB2D800E99BE0 /* ProfileTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,23 +404,27 @@
 				719B5D5C2ACB4A1D00E99BE0 /* HomeViewController.swift in Sources */,
 				719B5CFD2AC4366300E99BE0 /* LoginViewController.swift in Sources */,
 				719B5CDF2AC3298F00E99BE0 /* OnboardingViewController.swift in Sources */,
-				719B5DB72ACDB2D800E99BE0 /* ProfileTableViewCell.swift in Sources */,
 				71CDFF9A2AD1CE4D004FC807 /* ForgotPasswordViewModal.swift in Sources */,
 				719B5CF72AC3469500E99BE0 /* OnboardingModel.swift in Sources */,
+				717E319F2AD47AE7004ECCE0 /* ProfileUserImageTableViewCell.swift in Sources */,
 				719B5D292AC4C58400E99BE0 /* CustomKeyboardToolbar.swift in Sources */,
 				71CDFF9C2AD1D2A1004FC807 /* ProfileViewModal.swift in Sources */,
+				71CDFFD22AD31135004FC807 /* LoginViewModelProtocol.swift in Sources */,
 				719B5D2B2AC5C66000E99BE0 /* WebViewerController.swift in Sources */,
 				719B5D3A2AC614A600E99BE0 /* AuthHeaderView.swift in Sources */,
 				71CDFF882AD16750004FC807 /* LoginViewModel.swift in Sources */,
 				719B5DB32ACCA38C00E99BE0 /* MainTabBarViewController.swift in Sources */,
 				719B5D382AC607D700E99BE0 /* Constants.swift in Sources */,
 				719B5D5E2ACB4A4300E99BE0 /* BookedTicketsViewController.swift in Sources */,
-				719B5DBA2ACDB85800E99BE0 /* ProfileTableViewCellModel.swift in Sources */,
 				719B5D3D2AC6D71400E99BE0 /* ProfileViewController.swift in Sources */,
 				719B5D552AC9BE9C00E99BE0 /* UserModel.swift in Sources */,
 				719B5D402AC6DEEE00E99BE0 /* AlertManager.swift in Sources */,
+				7175E9F02AD475B000418C7C /* ProfileOptionsTableViewCell.swift in Sources */,
 				719B5DBC2ACEF5C200E99BE0 /* ProfileHeaderView.swift in Sources */,
+				71CDFFD42AD3142B004FC807 /* ProfileViewModelProtocol.swift in Sources */,
+				7175E9F42AD4781800418C7C /* ProfileUserInfoTableViewCell.swift in Sources */,
 				719B5CFF2AC4422100E99BE0 /* RegisterViewController.swift in Sources */,
+				71CDFFD62AD319D1004FC807 /* UIApplication+Extension.swift in Sources */,
 				71CDFF8C2AD1A2F1004FC807 /* RegisterViewModel.swift in Sources */,
 				719B5D042AC46D3B00E99BE0 /* CustomButton.swift in Sources */,
 				719B5D2F2AC5D60600E99BE0 /* CustomTermsAndPrivacyTextView.swift in Sources */,

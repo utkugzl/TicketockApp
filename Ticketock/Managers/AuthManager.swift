@@ -128,4 +128,42 @@ final class AuthManager {
         }
     }
     
+    
+    func checkAuthentication() {
+        if Auth.auth().currentUser == nil {
+            goToController(LoginViewController())
+        } else {
+            goToController(MainTabBarViewController())
+        }
+    }
+    
+    private func goToController(_ viewController: UIViewController) {
+        var window: UIWindow?
+        
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.25) {
+                if let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+                    let sceneWindow = sceneDelegate.window
+                    window = sceneWindow
+                    window?.layer.opacity = 0
+                }
+                
+            } completion: { _ in
+                var newRootViewController: UIViewController?
+                if let tabBarController = viewController as? UITabBarController {
+                    newRootViewController = tabBarController
+                } else {
+                    newRootViewController = UINavigationController(rootViewController: viewController)
+                    (newRootViewController as? UINavigationController)?.modalPresentationStyle = .fullScreen
+                }
+                
+                window?.rootViewController = newRootViewController
+                
+                UIView.animate(withDuration: 0.25) {
+                    window?.layer.opacity = 1
+                }
+            }
+        }
+    }
+    
 }

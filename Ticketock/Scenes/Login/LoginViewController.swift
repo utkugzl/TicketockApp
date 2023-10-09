@@ -98,9 +98,12 @@ extension LoginViewController {
     }
     
     @objc private func didTabForgotPasswordButton() {
+        viewModal.didTabForgotPasswordButton()
+        /*
         let vc = ForgotPasswordViewController()
         vc.title = "Forgot Password"
         navigationController?.pushViewController(vc, animated: true)
+         */
     }
     
 }

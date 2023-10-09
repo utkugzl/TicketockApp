@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import UIKit
 
 
+/*
 protocol LoginViewModelProtocol {
     var view: LoginViewProtocol? { get set }
     
@@ -15,6 +17,7 @@ protocol LoginViewModelProtocol {
     func viewWillAppear()
     func didTapLoginButton(email: String, password: String)
 }
+ */
 
 final class LoginViewModel {
     weak var view: LoginViewProtocol?
@@ -57,11 +60,7 @@ extension LoginViewModel: LoginViewModelProtocol {
         AuthManager.shared.signIn(with: loginUserRequest) { result in
             switch result {
             case .success:
-                if let sceneDelegate = self.view?.window?.windowScene?.delegate as? SceneDelegate {
-                    sceneDelegate.checkAuthentication()
-                } else {
-                    AlertManager.showSignInErrorAlert(on: self)
-                }
+                AuthManager.shared.checkAuthentication()
             case .failure(let error):
                 AlertManager.showSignInErrorAlert(on: self, with: error)
             }
@@ -69,4 +68,14 @@ extension LoginViewModel: LoginViewModelProtocol {
     
     }
     
+    func didTabCreateAccountButton() {
+        let vc = RegisterViewController()
+        UIApplication.topViewController()?.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func didTabForgotPasswordButton() {
+        let vc = ForgotPasswordViewController()
+        vc.title = "Forgot Password"
+        UIApplication.topViewController()?.navigationController?.pushViewController(vc, animated: true)
+    }
 }

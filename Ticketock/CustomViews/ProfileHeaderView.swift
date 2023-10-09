@@ -85,6 +85,7 @@ extension ProfileHeaderView {
     
     private func fetchUser() {
         AuthManager.shared.fetchUser { [weak self] result in
+            
             guard let self = self else { return }
             DispatchQueue.main.async {
                 switch result {
