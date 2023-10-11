@@ -69,6 +69,7 @@ final class AuthManager {
     
     /// A method to sign out the current user
     /// - Parameter completion:
+    /// ///    Error: An error if the firebase provides one
     public func signOut(completion: @escaping (Result<Void, Error>) -> Void) {
         do {
             try Auth.auth().signOut()
@@ -83,7 +84,7 @@ final class AuthManager {
     /// - Parameters:
     ///   - email: User email
     ///   - completion: A completion with one values...
-    ///   ///   Error?: An error if the firebase provides one
+    ///   ///   Error: An error if the firebase provides one
     public func forgotPassword(with email: String, completion: @escaping (Result<Void, Error>) -> Void) {
         Auth.auth().sendPasswordReset(withEmail: email) { error in
             if let error = error {

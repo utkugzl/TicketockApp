@@ -55,6 +55,8 @@
 		71CDFFD22AD31135004FC807 /* LoginViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CDFFD12AD31135004FC807 /* LoginViewModelProtocol.swift */; };
 		71CDFFD42AD3142B004FC807 /* ProfileViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CDFFD32AD3142B004FC807 /* ProfileViewModelProtocol.swift */; };
 		71CDFFD62AD319D1004FC807 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CDFFD52AD319D1004FC807 /* UIApplication+Extension.swift */; };
+		71D5C9F12AD6DFEF006E2AD1 /* RegisterViewModalProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D5C9F02AD6DFEF006E2AD1 /* RegisterViewModalProtocol.swift */; };
+		71D5C9F32AD6E17F006E2AD1 /* ForgotPasswordViewModalProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D5C9F22AD6E17F006E2AD1 /* ForgotPasswordViewModalProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +106,8 @@
 		71CDFFD12AD31135004FC807 /* LoginViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelProtocol.swift; sourceTree = "<group>"; };
 		71CDFFD32AD3142B004FC807 /* ProfileViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModelProtocol.swift; sourceTree = "<group>"; };
 		71CDFFD52AD319D1004FC807 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
+		71D5C9F02AD6DFEF006E2AD1 /* RegisterViewModalProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModalProtocol.swift; sourceTree = "<group>"; };
+		71D5C9F22AD6E17F006E2AD1 /* ForgotPasswordViewModalProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModalProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,8 +161,8 @@
 		719B5CEE2AC32A8600E99BE0 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				719B5CF42AC32CE300E99BE0 /* UIView+Extension.swift */,
 				71CDFFD52AD319D1004FC807 /* UIApplication+Extension.swift */,
+				719B5CF42AC32CE300E99BE0 /* UIView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -237,6 +241,7 @@
 			children = (
 				719B5CFE2AC4422100E99BE0 /* RegisterViewController.swift */,
 				71CDFF8B2AD1A2F1004FC807 /* RegisterViewModel.swift */,
+				71D5C9F02AD6DFEF006E2AD1 /* RegisterViewModalProtocol.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 			children = (
 				719B5D302AC5DAF300E99BE0 /* ForgotPasswordViewController.swift */,
 				71CDFF992AD1CE4D004FC807 /* ForgotPasswordViewModal.swift */,
+				71D5C9F22AD6E17F006E2AD1 /* ForgotPasswordViewModalProtocol.swift */,
 			);
 			path = ForgotPassword;
 			sourceTree = "<group>";
@@ -427,11 +433,13 @@
 				71CDFFD62AD319D1004FC807 /* UIApplication+Extension.swift in Sources */,
 				71CDFF8C2AD1A2F1004FC807 /* RegisterViewModel.swift in Sources */,
 				719B5D042AC46D3B00E99BE0 /* CustomButton.swift in Sources */,
+				71D5C9F32AD6E17F006E2AD1 /* ForgotPasswordViewModalProtocol.swift in Sources */,
 				719B5D2F2AC5D60600E99BE0 /* CustomTermsAndPrivacyTextView.swift in Sources */,
 				719B5D312AC5DAF300E99BE0 /* ForgotPasswordViewController.swift in Sources */,
 				719B5D532AC9A87100E99BE0 /* ValidationManager.swift in Sources */,
 				719B5CDB2AC3298F00E99BE0 /* AppDelegate.swift in Sources */,
 				719B5D4D2AC875BA00E99BE0 /* AuthManager.swift in Sources */,
+				71D5C9F12AD6DFEF006E2AD1 /* RegisterViewModalProtocol.swift in Sources */,
 				719B5D4F2AC876F200E99BE0 /* RegisterUserModal.swift in Sources */,
 				719B5CF52AC32CE300E99BE0 /* UIView+Extension.swift in Sources */,
 				719B5CDD2AC3298F00E99BE0 /* SceneDelegate.swift in Sources */,

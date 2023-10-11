@@ -11,6 +11,8 @@ protocol LoginViewProtocol: AnyObject {
     func configureToolBar()
     func configureNavBar()
     func configureUI()
+    func showSignInErrorAlert(error: Error)
+    func showInvalidEmailAlert()
 }
 
 final class LoginViewController: UIViewController {
@@ -38,6 +40,7 @@ final class LoginViewController: UIViewController {
 }
 
 extension LoginViewController: LoginViewProtocol {
+    
     func configureToolBar() {
         let keyboardToolbar = CustomKeyboardToolbar(textFields: [emailField, passwordField])
         
@@ -67,7 +70,15 @@ extension LoginViewController: LoginViewProtocol {
        
        [emailField, passwordField].forEach { $0.delegate = self }
        
-   }
+    }
+    
+    func showSignInErrorAlert(error: Error) {
+        AlertManager.showSignInErrorAlert(on: self, with: error)
+    }
+    
+    func showInvalidEmailAlert() {
+        AlertManager.showInvalidEmailAlert(on: self)
+    }
 }
 
 
@@ -99,11 +110,6 @@ extension LoginViewController {
     
     @objc private func didTabForgotPasswordButton() {
         viewModal.didTabForgotPasswordButton()
-        /*
-        let vc = ForgotPasswordViewController()
-        vc.title = "Forgot Password"
-        navigationController?.pushViewController(vc, animated: true)
-         */
     }
     
 }

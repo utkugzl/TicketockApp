@@ -11,6 +11,7 @@ protocol RegisterViewProtocol: AnyObject {
     func configureToolBar()
     func configureNavBar()
     func configureUI()
+    func showRegistrationErrorAlert(error: Error)
 }
 
 final class RegisterViewController: UIViewController {
@@ -69,6 +70,10 @@ extension RegisterViewController: RegisterViewProtocol {
         let keyboardToolbar = CustomKeyboardToolbar(textFields: [usernameField,emailField, passwordField])
 
         [usernameField, emailField, passwordField].forEach { $0.inputAccessoryView = keyboardToolbar }
+    }
+    
+    func showRegistrationErrorAlert(error: Error) {
+        AlertManager.showRegistrationErrorAlert(on: self, with: error)
     }
 }
 

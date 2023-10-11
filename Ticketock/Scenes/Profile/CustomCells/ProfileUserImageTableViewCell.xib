@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -29,13 +28,14 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="35s-ik-uV5" firstAttribute="centerX" secondItem="aFQ-oW-lb8" secondAttribute="centerX" id="WSM-tv-YzQ"/>
                             <constraint firstItem="35s-ik-uV5" firstAttribute="centerY" secondItem="aFQ-oW-lb8" secondAttribute="centerY" id="aHJ-WC-FcV"/>
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="aFQ-oW-lb8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Q5F-b5-2zO"/>
                     <constraint firstAttribute="bottom" secondItem="aFQ-oW-lb8" secondAttribute="bottom" id="hU5-Xu-ewH"/>
@@ -44,13 +44,13 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="profileImageView" destination="35s-ik-uV5" id="47D-FB-rlS"/>
+            </connections>
             <point key="canvasLocation" x="154.96183206106869" y="-32.394366197183103"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="user" width="600" height="600"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

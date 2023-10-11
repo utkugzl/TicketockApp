@@ -9,15 +9,18 @@ import UIKit
 
 final class ProfileUserImageTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var profileImageView: UIImageView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        profileImageView.layer.borderWidth = 3
+        profileImageView.layer.masksToBounds = false
+        profileImageView.layer.borderColor = UIColor.red.cgColor
+        profileImageView.layer.cornerRadius = profileImageView.frame.size.height/2
+        profileImageView.clipsToBounds = true
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
 }
+

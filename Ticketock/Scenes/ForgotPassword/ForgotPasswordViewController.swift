@@ -11,6 +11,9 @@ protocol ForgotPasswordViewProtocol: AnyObject {
     func configureUI()
     func configureToolBar()
     func configureNavBar()
+    func showInvalidEmailAlert()
+    func showPasswordResetSent()
+    func showSendingPasswordResetErrorAlert(error: Error)
 }
 
 final class ForgotPasswordViewController: UIViewController {
@@ -55,6 +58,18 @@ extension ForgotPasswordViewController: ForgotPasswordViewProtocol {
     
     func configureNavBar() {
         navigationController?.navigationBar.isHidden = false
+    }
+    
+    func showInvalidEmailAlert() {
+        AlertManager.showInvalidEmailAlert(on: self)
+    }
+    
+    func showPasswordResetSent() {
+        AlertManager.showPasswordResetSent(on: self)
+    }
+    
+    func showSendingPasswordResetErrorAlert(error: Error) {
+        AlertManager.showSendingPasswordResetErrorAlert(on: self, with: error)
     }
 }
 

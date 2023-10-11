@@ -81,7 +81,7 @@ extension AlertManager {
         showBasicAlert(on: vc, title: "Password Reset Sent", message: nil)
     }
     
-    public static func showErrorSendingPasswordReset(on vc: UIViewController, with error: Error) {
+    public static func showSendingPasswordResetErrorAlert(on vc: UIViewController, with error: Error) {
         showBasicAlert(on: vc, title: "Error Sending Password Reset", message: "\(error.localizedDescription)")
     }
 }

@@ -7,17 +7,25 @@
 
 import UIKit
 
+struct ProfileOptionsModal {
+    let symbol: UIImage
+    let title: String
+    let handler: (() -> Void)
+}
+
+
 
 final class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    // git test
     private let profileTableView = UITableView(frame: .zero, style: .grouped)
     
-    enum ProfileCellType {
+    enum ProfileSections {
         case headerImage
         case options
     }
-    var cellTypes: [ProfileCellType] = []
+    var profileSections: [ProfileSections] = []
+    var profileOptions: [ProfileOptionsModal] = []
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,11 +41,11 @@ final class ProfileViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return cellTypes.count // İki bölüm ekliyoruz.
+        return profileSections.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch cellTypes[section] {
+        switch profileSections[section] {
             
         case .headerImage:
             return 2
@@ -47,28 +55,36 @@ final class ProfileViewController: UIViewController, UITableViewDelegate, UITabl
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch cellTypes[indexPath.section] {
+        switch profileSections[indexPath.section] {
         case .headerImage:
             if indexPath.row == 0 {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileUserImageTableViewCell", for: indexPath) as? ProfileUserImageTableViewCell else {
                     return UITableViewCell()
                 }
-                
+                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
                 return cell
             } else {
                 guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileUserInfoTableViewCell", for: indexPath) as? ProfileUserInfoTableViewCell else {
                     return UITableViewCell()
                 }
                 
-                AuthManager.shared.fetchUser { [weak self] result in
-                    
-                    guard let self = self else { return }
+                let activityIndicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
+                activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+                cell.contentView.addSubview(activityIndicator)
+                NSLayoutConstraint.activate([
+                    activityIndicator.centerXAnchor.constraint(equalTo: cell.contentView.centerXAnchor),
+                    activityIndicator.centerYAnchor.constraint(equalTo: cell.contentView.centerYAnchor)
+                ])
+                activityIndicator.startAnimating()
+                
+                AuthManager.shared.fetchUser { result in
                     DispatchQueue.main.async {
                         switch result {
                         case .success(let user):
-                            
                             cell.usernameLabel.text = user.username
                             cell.emailLabel.text = user.email
+                            activityIndicator.stopAnimating()
+                            activityIndicator.isHidden = true
                         case .failure(let error):
                             print("Profile Error: \(error.localizedDescription)")
                         }
@@ -79,22 +95,22 @@ final class ProfileViewController: UIViewController, UITableViewDelegate, UITabl
                 return cell
             }
         
-
         case .options:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "ProfileOptionsTableViewCell", for: indexPath) as? ProfileOptionsTableViewCell else {
                 return UITableViewCell()
             }
-            
-            
+            cell.setup(with: profileOptions[indexPath.row])
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             return cell
         }
     }
     
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch cellTypes[indexPath.section] {
+        switch profileSections[indexPath.section] {
         case .headerImage:
             if indexPath.row == 0 {
-                return 160
+                return 140
             } else {
                 return 80
             }
@@ -103,10 +119,43 @@ final class ProfileViewController: UIViewController, UITableViewDelegate, UITabl
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let profileOption = profileOptions[indexPath.row]
+        profileOption.handler()
+    }
+    
     private func configureUI() {
         profileTableView.frame = view.bounds
-        cellTypes.append(.headerImage)
-        cellTypes.append(.options)
+        profileSections.append(.headerImage)
+        profileSections.append(.options)
+        
+        profileOptions.append(ProfileOptionsModal(symbol: UIImage(systemName: AppConstants.Symbols.profileFavoriteMoviesSymbol)!, title: "Favorite Movies") {
+            print("Favorite Movies")
+        })
+        profileOptions.append(ProfileOptionsModal(symbol: UIImage(systemName: AppConstants.Symbols.profilePaymnetMethodsSymbol)!, title: "Paymnent Methods") {
+            print("Paymnent Methods")
+        })
+
+        profileOptions.append(ProfileOptionsModal(symbol: UIImage(systemName: AppConstants.Symbols.profileAccountSettingsSymbol)!, title: "Account Settings") {
+            print("Account Settings")
+        })
+
+        profileOptions.append(ProfileOptionsModal(symbol: UIImage(systemName: AppConstants.Symbols.profileHelpSymbol)!, title: "Help") {
+            print("Help")
+        })
+
+        profileOptions.append(ProfileOptionsModal(symbol: UIImage(systemName: AppConstants.Symbols.profileLogOutSymbol)!, title: "Log Out") {
+            AuthManager.shared.signOut { result in
+                switch result {
+                case .success():
+                    AuthManager.shared.checkAuthentication()
+                case .failure(_):
+                    print("Failed to log out")
+                }
+            }
+        })
+
     }
 
 }

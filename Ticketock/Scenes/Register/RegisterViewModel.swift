@@ -5,20 +5,11 @@
 //  Created by Utku Güzel on 7.10.2023.
 //
 
-import Foundation
 import UIKit
 
 
-protocol RegisterViewModelProtocol {
-    func viewDidLoad()
-    func viewWillAppear()
-    func didTapRegisterButton(username: String, email: String, password: String)
-    func shouldInteractWith(url: URL) -> Bool
-}
-
 final class RegisterViewModel {
     weak var view :RegisterViewProtocol?
-    
     
     private func showWebViewerController(with urlString: String) {
         guard let presentingViewController = view as? UIViewController else {
@@ -43,7 +34,6 @@ extension RegisterViewModel: RegisterViewModelProtocol {
     }
     
     func didTapRegisterButton(username: String, email: String, password: String) {
-        //guard let self = self.view as? RegisterViewController else { return }
         
         let registerUserRequest = RegisterUserModal(
             username: username,
@@ -72,14 +62,9 @@ extension RegisterViewModel: RegisterViewModelProtocol {
             
             switch result {
             case .success:
-                break
-                /*
-                if let sceneDelegate = self.view.window?.windowScene?.delegate as? SceneDelegate {
-                    sceneDelegate.checkAuthentication()
-                }
-                 */
+                AuthManager.shared.checkAuthentication()
             case .failure(let error):
-                AlertManager.showRegistrationErrorAlert(on: UIApplication.topViewController() ?? UIViewController(), with: error)
+                self.view?.showRegistrationErrorAlert(error: error)
             }
         }
 

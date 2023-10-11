@@ -9,16 +9,6 @@ import Foundation
 import UIKit
 
 
-/*
-protocol LoginViewModelProtocol {
-    var view: LoginViewProtocol? { get set }
-    
-    func viewDidLoad()
-    func viewWillAppear()
-    func didTapLoginButton(email: String, password: String)
-}
- */
-
 final class LoginViewModel {
     weak var view: LoginViewProtocol?
 }
@@ -38,7 +28,6 @@ extension LoginViewModel: LoginViewModelProtocol {
     }
     
     func didTapLoginButton(email: String, password: String) {
-        guard let self = self.view as? LoginViewController else { return }
         
         let loginUserRequest = LoginUserModal(
             email: email ,
@@ -47,7 +36,7 @@ extension LoginViewModel: LoginViewModelProtocol {
         
         // Email check
         if !ValidationManager.isValidEmail(for: loginUserRequest.email) {
-            AlertManager.showInvalidEmailAlert(on: self)
+            view?.showInvalidEmailAlert()
             return
         }
         
@@ -62,7 +51,7 @@ extension LoginViewModel: LoginViewModelProtocol {
             case .success:
                 AuthManager.shared.checkAuthentication()
             case .failure(let error):
-                AlertManager.showSignInErrorAlert(on: self, with: error)
+                self.view?.showSignInErrorAlert(error: error)
             }
         }
     

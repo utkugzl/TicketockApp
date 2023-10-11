@@ -22,25 +22,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="423" height="70"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="M2e-3R-UZY">
-                                <rect key="frame" x="12" y="19.666666666666664" width="35" height="31.666666666666671"/>
+                                <rect key="frame" x="12" y="24.666666666666664" width="25" height="21.666666666666664"/>
                                 <color key="tintColor" systemColor="systemPinkColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="4OD-yQ-fi8"/>
-                                    <constraint firstAttribute="width" constant="35" id="BnQ-Ey-Bh9"/>
+                                    <constraint firstAttribute="height" constant="25" id="4OD-yQ-fi8"/>
+                                    <constraint firstAttribute="width" constant="25" id="BnQ-Ey-Bh9"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RKL-Y4-Yzj">
-                                <rect key="frame" x="59" y="24.666666666666671" width="33" height="21"/>
+                                <rect key="frame" x="49" y="24.666666666666671" width="33" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowshape.turn.up.forward.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fgV-sY-J3U">
-                                <rect key="frame" x="376" y="19.333333333333329" width="35" height="32"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fgV-sY-J3U">
+                                <rect key="frame" x="386" y="25.666666666666671" width="25" height="19.333333333333329"/>
                                 <color key="tintColor" systemColor="systemPinkColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="Kgh-dw-ZOZ"/>
-                                    <constraint firstAttribute="width" constant="35" id="n49-Zo-Tz2"/>
+                                    <constraint firstAttribute="height" constant="25" id="Kgh-dw-ZOZ"/>
+                                    <constraint firstAttribute="width" constant="25" id="n49-Zo-Tz2"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -63,11 +63,15 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="symbolImageView" destination="M2e-3R-UZY" id="osh-2R-Ofx"/>
+                <outlet property="titleLabel" destination="RKL-Y4-Yzj" id="VH7-KU-wMB"/>
+            </connections>
             <point key="canvasLocation" x="205.34351145038167" y="-3.5211267605633805"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="arrowshape.turn.up.forward.fill" catalog="system" width="128" height="104"/>
+        <image name="arrow.right" catalog="system" width="128" height="95"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
