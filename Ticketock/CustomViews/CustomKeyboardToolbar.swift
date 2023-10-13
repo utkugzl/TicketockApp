@@ -23,7 +23,6 @@ final class CustomKeyboardToolbar: UIToolbar {
     }
 
 
-
     @objc private func didTapcloseKeyboard() {
         for textField in textFields {
             textField.resignFirstResponder()

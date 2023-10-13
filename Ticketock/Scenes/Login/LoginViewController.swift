@@ -104,8 +104,7 @@ extension LoginViewController {
     }
     
     @objc private func didTabCreateAccountButton() {
-        let vc = RegisterViewController()
-        navigationController?.pushViewController(vc, animated: true)
+        viewModal.didTabCreateAccountButton()
     }
     
     @objc private func didTabForgotPasswordButton() {

@@ -33,7 +33,6 @@ enum LinkType {
 
 final class CustomTermsAndPrivacyTextView: UITextView {
     
-    
     init(){
         super.init(frame: .zero, textContainer: nil)
         let attributedString = NSMutableAttributedString(string: "By creating an account, you agree to our Terms & Conditions and you acknowledge that you have read our Privacy Policy")

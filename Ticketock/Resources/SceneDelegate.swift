@@ -15,7 +15,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        if(UserDefaults.standard.bool(forKey: AppConstants.UserDefaultsKeys.notFirstInApp) == false){
+        if UserDefaults.standard.bool(forKey: AppConstants.UserDefaultsKeys.notFirstInApp) == false {
             UserDefaults.standard.set(true, forKey: AppConstants.UserDefaultsKeys.notFirstInApp)
             setupWindow(with: scene)
             window?.rootViewController = OnboardingViewController()

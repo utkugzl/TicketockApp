@@ -7,13 +7,13 @@
 
 import UIKit
 
+enum FontSize {
+    case big
+    case med
+    case small
+}
+
 final class CustomButton: UIButton {
-    
-    enum FontSize {
-        case big
-        case med
-        case small
-    }
 
     init(title: String, hasBackground: Bool = false, fontSize: FontSize) {
         super.init(frame: .zero)
@@ -29,7 +29,6 @@ final class CustomButton: UIButton {
         self.setTitleColor(titleColor, for: .normal)
         
         switch fontSize {
-
         case .big:
             self.titleLabel?.font = .systemFont(ofSize: 22, weight: .bold)
         case .med:

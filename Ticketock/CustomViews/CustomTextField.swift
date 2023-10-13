@@ -7,14 +7,13 @@
 
 import UIKit
 
+enum CustomTextFieldType {
+    case username
+    case email
+    case password
+}
 
 final class CustomTextField: UITextField {
-
-    enum CustomTextFieldType {
-        case username
-        case email
-        case password
-    }
     
     private let authFieldType: CustomTextFieldType
     

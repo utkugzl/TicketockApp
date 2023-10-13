@@ -51,7 +51,6 @@ extension RegisterViewModel: RegisterViewModelProtocol {
 //            AlertManager.showInvalidEmailAlert(on: self)
 //            return
 //        }
-        
         // Password check
 //        if !ValidateManager.isValidPassword(for: registerUserRequest.password) {
 //            AlertManager.showInvalidPasswordAlert(on: self)
@@ -59,7 +58,6 @@ extension RegisterViewModel: RegisterViewModelProtocol {
 //        }
         
         AuthManager.shared.registerUser(with: registerUserRequest) { result in
-            
             switch result {
             case .success:
                 AuthManager.shared.checkAuthentication()
