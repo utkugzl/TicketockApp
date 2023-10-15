@@ -19,22 +19,9 @@ final class ProfileHeaderView: UIView {
         return imageView
     }()
     
+    private let button = CustomButton(title: "TAP", hasBackground: true, fontSize: .big)
     
-    private let usernameLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 22, weight: .semibold)
-        label.textAlignment = .center
-        label.textColor = .label
-        return label
-    }()
     
-    private let emailLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 18, weight: .regular)
-        label.textAlignment = .center
-        label.textColor = .secondaryLabel
-        return label
-    }()
     
     override init( frame: CGRect) {
         super.init(frame: frame)
@@ -54,14 +41,14 @@ extension ProfileHeaderView {
     
     private func configureUI() {
         addSubview(profileImageView)
-        addSubview(usernameLabel)
-        addSubview(emailLabel)
+        addSubview(button)
+
+        button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
         
-        fetchUser()
         
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
-        usernameLabel.translatesAutoresizingMaskIntoConstraints = false
-        emailLabel.translatesAutoresizingMaskIntoConstraints = false
+        button.translatesAutoresizingMaskIntoConstraints = false
+
         
         NSLayoutConstraint.activate([
             profileImageView.topAnchor.constraint(equalTo: topAnchor),
@@ -69,33 +56,34 @@ extension ProfileHeaderView {
             profileImageView.heightAnchor.constraint(equalToConstant: 150),
             profileImageView.widthAnchor.constraint(equalToConstant: 150),
             
-            usernameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 10),
-            usernameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            usernameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            button.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 10),
+            button.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            button.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
             
-            emailLabel.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 5),
-            emailLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            emailLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
+
         ])
     
     }
     
-
+    
+    @objc private func didTapButton() {
+        print("Tapped")
+    }
 // MARK: - Helper Functions
     
-    private func fetchUser() {
-        AuthManager.shared.fetchUser { [weak self] result in
-            
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let user):
-                    self.usernameLabel.text = user.username
-                    self.emailLabel.text = user.email
-                case .failure(let error):
-                    print("Profile Error: \(error.localizedDescription)")
-                }
-            }
-        }
-    }
+//    private func fetchUser() {
+//        AuthManager.shared.fetchUser { [weak self] result in
+//            
+//            guard let self = self else { return }
+//            DispatchQueue.main.async {
+//                switch result {
+//                case .success(let user):
+//                    self.usernameLabel.text = user.username
+//                    self.emailLabel.text = user.email
+//                case .failure(let error):
+//                    print("Profile Error: \(error.localizedDescription)")
+//                }
+//            }
+//        }
+//    }
 }

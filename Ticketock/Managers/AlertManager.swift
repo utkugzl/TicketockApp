@@ -18,6 +18,17 @@ final class AlertManager {
             vc.present(alert, animated: true)
         }
     }
+    
+    private static func showBasicAlertWithHandler(on vc: UIViewController, title: String, leftButtonTitle: String, rightButtonTitle: String, message: String?, handler: ((UIAlertAction) -> Void)?) {
+        
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: leftButtonTitle, style: .default))
+            alert.addAction(UIAlertAction(title: rightButtonTitle, style: .destructive, handler: handler))
+            
+            vc.present(alert, animated: true)
+        }
+    }
 }
 
 // MARK: - Validation Alerts
@@ -70,6 +81,10 @@ extension AlertManager {
     
     public static func showLogoutErrorAlert(on vc: UIViewController, with error: Error) {
         showBasicAlert(on: vc, title: "Log Out Error", message: "\(error.localizedDescription)")
+    }
+    
+    public static func showLogOutAlert(on vc: UIViewController, handler: ((UIAlertAction) -> Void)?) {
+        showBasicAlertWithHandler(on: vc, title: "Log Out", leftButtonTitle: "Cancel", rightButtonTitle: "Log Out", message: "Are you sure you want to log out?", handler: handler)
     }
 }
 

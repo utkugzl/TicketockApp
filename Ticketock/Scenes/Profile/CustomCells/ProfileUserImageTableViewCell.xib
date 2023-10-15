@@ -10,21 +10,21 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfileUserImageTableViewCell" rowHeight="118" id="KGk-i7-Jjw" customClass="ProfileUserImageTableViewCell" customModule="Ticketock" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="311" height="118"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProfileUserImageTableViewCell" rowHeight="167" id="KGk-i7-Jjw" customClass="ProfileUserImageTableViewCell" customModule="Ticketock" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="349" height="167"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="311" height="118"/>
+                <rect key="frame" x="0.0" y="0.0" width="349" height="167"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aFQ-oW-lb8">
-                        <rect key="frame" x="0.0" y="0.0" width="311" height="118"/>
+                        <rect key="frame" x="0.0" y="0.0" width="349" height="167"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="35s-ik-uV5">
-                                <rect key="frame" x="105.66666666666669" y="9" width="100" height="100"/>
+                                <rect key="frame" x="104.66666666666669" y="13.666666666666671" width="140" height="140"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="IZ5-VN-e2M"/>
-                                    <constraint firstAttribute="height" constant="100" id="paC-zH-zyH"/>
+                                    <constraint firstAttribute="width" constant="140" id="IZ5-VN-e2M"/>
+                                    <constraint firstAttribute="height" constant="140" id="paC-zH-zyH"/>
                                 </constraints>
                             </imageView>
                         </subviews>
@@ -47,7 +47,7 @@
             <connections>
                 <outlet property="profileImageView" destination="35s-ik-uV5" id="47D-FB-rlS"/>
             </connections>
-            <point key="canvasLocation" x="154.96183206106869" y="-32.394366197183103"/>
+            <point key="canvasLocation" x="183.96946564885496" y="-15.140845070422536"/>
         </tableViewCell>
     </objects>
     <resources>

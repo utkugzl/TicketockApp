@@ -9,6 +9,10 @@ import Foundation
 
 
 struct AppConstants {
+    static let scheme = "https"
+    static let host = "api.themoviedb.org"
+    static let baseURL = "https://api.themoviedb.org"
+    static let API_KEY = "c06d0d900e9e29187d3512d249f7fa60"
     
     struct UserDefaultsKeys {
         static let notFirstInApp = "notFirstInApp"
